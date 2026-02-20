@@ -80,8 +80,43 @@
 
 <section class="section pt-2" id="overview">
   <div class="container is-max-desktop">
+    <div class="overview-key-message">
+      <p class="overview-key-text">
+        LD-ViCE generates counterfactual video explanations using a latent diffusion model explicitly guided by the target model. By operating in latent space, LD-ViCE significantly reduces computational cost while maintaining temporal coherence and visual fidelity. LD-ViCE integrates model feedback throughout generation, ensuring causal alignment with the model’s predictions.
+      </p>
+    </div>
     <figure class="paper-figure lead-figure">
-      <div class="overview-videos">
+      <div class="video-controls" data-scope="overview-video-groups" role="group" aria-label="Overview sample filter">
+        <span class="video-controls-label">Subject:</span>
+        <button class="video-filter video-filter-thumb is-active" type="button" data-group="sample_1" aria-pressed="true" aria-label="Show sample 1">
+          <img src="./static/videos/ferv39k/sample_1/f_surprise.gif" alt="Sample 1 face">
+        </button>
+        <button class="video-filter video-filter-thumb" type="button" data-group="sample_2" aria-pressed="false" aria-label="Show sample 2">
+          <img src="./static/videos/ferv39k/sample_2/f_surprise.gif" alt="Sample 2 face">
+        </button>
+        <button class="video-filter video-filter-thumb" type="button" data-group="sample_3" aria-pressed="false" aria-label="Show sample 3">
+          <img src="./static/videos/ferv39k/sample_3/f_video.gif" alt="Sample 3 face">
+        </button>
+        <button class="video-filter" type="button" data-group="all" aria-pressed="false">All</button>
+      </div>
+      <p class="video-controls-help">Click emotion buttons to select or unselect. You can choose one, multiple, or all counterfactual emotions.</p>
+      <div class="video-controls video-class-controls" data-class-scope="overview-video-groups" role="group" aria-label="Overview class filter">
+        <span class="video-controls-label">Target Emotion:</span>
+        <button class="video-filter video-class-filter is-active" type="button" data-class="angry" aria-pressed="true">Angry</button>
+        <button class="video-filter video-class-filter" type="button" data-class="fear" aria-pressed="false">Fear</button>
+        <button class="video-filter video-class-filter" type="button" data-class="happy" aria-pressed="false">Happy</button>
+        <button class="video-filter video-class-filter" type="button" data-class="sad" aria-pressed="false">Sad</button>
+        <button class="video-filter video-class-filter" type="button" data-class="all" aria-pressed="false">All Emotion</button>
+      </div>
+      <div class="video-controls" data-diff-scope="overview-video-groups" role="group" aria-label="Overview difference-map visibility">
+        <span class="video-controls-label">Difference map:</span>
+        <button class="video-filter overview-diff-filter is-active" type="button" data-diff-mode="hide" aria-pressed="true">Hide</button>
+        <button class="video-filter overview-diff-filter" type="button" data-diff-mode="show" aria-pressed="false">Show</button>
+      </div>
+      <div class="video-controls video-motion-row" data-motion-scope="overview-video-groups" aria-label="Overview motion control">
+        <span class="video-controls-help-inline">Tip: click any GIF to pause/play.</span>
+      </div>
+      <div class="overview-videos" id="overview-video-groups">
         <div class="overview-video-row overview-video-header overview-video-header-top">
           <div class="ov-cell ov-group-original">Original Video</div>
           <div class="ov-cell ov-group-ce">Counterfactual Videos</div>
@@ -90,61 +125,66 @@
       <div class="overview-video-row overview-video-header">
         <div class="ov-cell class-surprise">Surprise</div>
         <div class="ov-cell class-angry">Angry</div>
-        <div class="ov-cell class-disgust">Disgust</div>
         <div class="ov-cell class-fear">Fear</div>
         <div class="ov-cell class-happy">Happy</div>
-        <div class="ov-cell class-neutral">Neutral</div>
         <div class="ov-cell class-sad">Sad</div>
       </div>
 
-        <div class="overview-video-row">
-          <div class="ov-cell"><img src="./static/videos/ferv39k/sample1/factual_Surprise.gif" alt="sample1 factual surprise"></div>
-          <div class="ov-cell"><img src="./static/videos/ferv39k/sample1/counerfactual_Angry.gif" alt="sample1 counterfactual angry"></div>
-          <div class="ov-cell"><img src="./static/videos/ferv39k/sample1/counerfactual_Disgust.gif" alt="sample1 counterfactual disgust"></div>
-          <div class="ov-cell"><img src="./static/videos/ferv39k/sample1/counerfactual_Fear.gif" alt="sample1 counterfactual fear"></div>
-          <div class="ov-cell"><img src="./static/videos/ferv39k/sample1/counerfactual_Happy.gif" alt="sample1 counterfactual happy"></div>
-          <div class="ov-cell"><img src="./static/videos/ferv39k/sample1/counerfactual_Neutral.gif" alt="sample1 counterfactual neutral"></div>
-          <div class="ov-cell"><img src="./static/videos/ferv39k/sample1/counerfactual_Sad.gif" alt="sample1 counterfactual sad"></div>
+        <div class="overview-video-row" data-group="sample_1">
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_1/f_surprise.gif" alt="sample_1 factual surprise"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_1/cf_angry.gif" alt="sample_1 counterfactual angry"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_1/cf_fear.gif" alt="sample_1 counterfactual fear"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_1/cf_happy.gif" alt="sample_1 counterfactual happy"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_1/cf_sad.gif" alt="sample_1 counterfactual sad"></div>
         </div>
 
-        <div class="overview-video-row">
-          <div class="ov-cell"><img src="./static/videos/ferv39k/sample10/factual_Surprise.gif" alt="sample10 factual surprise"></div>
-          <div class="ov-cell"><img src="./static/videos/ferv39k/sample10/counerfactual_Angry.gif" alt="sample10 counterfactual angry"></div>
-          <div class="ov-cell"><img src="./static/videos/ferv39k/sample10/counerfactual_Disgust.gif" alt="sample10 counterfactual disgust"></div>
-          <div class="ov-cell"><img src="./static/videos/ferv39k/sample10/counerfactual_Fear.gif" alt="sample10 counterfactual fear"></div>
-          <div class="ov-cell"><img src="./static/videos/ferv39k/sample10/counerfactual_Happy.gif" alt="sample10 counterfactual happy"></div>
-          <div class="ov-cell"><img src="./static/videos/ferv39k/sample10/counerfactual_Neutral.gif" alt="sample10 counterfactual neutral"></div>
-          <div class="ov-cell"><img src="./static/videos/ferv39k/sample10/counerfactual_Sad.gif" alt="sample10 counterfactual sad"></div>
+        <div class="overview-video-row overview-diff-row" data-group="sample_1">
+          <div class="ov-cell ov-diff-label">Difference Map</div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_1/diff_angry.gif" alt="sample_1 difference map angry"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_1/diff_fear.gif" alt="sample_1 difference map fear"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_1/diff_happy.gif" alt="sample_1 difference map happy"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_1/diff_sad.gif" alt="sample_1 difference map sad"></div>
         </div>
 
-        <div class="overview-video-row">
-          <div class="ov-cell"><img src="./static/videos/ferv39k/sample11/factual_Surprise.gif" alt="sample11 factual surprise"></div>
-          <div class="ov-cell"><img src="./static/videos/ferv39k/sample11/counerfactual_Angry.gif" alt="sample11 counterfactual angry"></div>
-          <div class="ov-cell"><img src="./static/videos/ferv39k/sample11/counerfactual_Disgust.gif" alt="sample11 counterfactual disgust"></div>
-          <div class="ov-cell"><img src="./static/videos/ferv39k/sample11/counerfactual_Fear.gif" alt="sample11 counterfactual fear"></div>
-          <div class="ov-cell"><img src="./static/videos/ferv39k/sample11/counerfactual_Happy.gif" alt="sample11 counterfactual happy"></div>
-          <div class="ov-cell"><img src="./static/videos/ferv39k/sample11/counerfactual_Neutral.gif" alt="sample11 counterfactual neutral"></div>
-          <div class="ov-cell"><img src="./static/videos/ferv39k/sample11/counerfactual_Sad.gif" alt="sample11 counterfactual sad"></div>
+        <div class="overview-video-row" data-group="sample_2">
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_2/f_surprise.gif" alt="sample_2 factual surprise"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_2/cf_angry.gif" alt="sample_2 counterfactual angry"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_2/cf_fear.gif" alt="sample_2 counterfactual fear"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_2/cf_happy.gif" alt="sample_2 counterfactual happy"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_2/cf_sad.gif" alt="sample_2 counterfactual sad"></div>
+        </div>
+        <div class="overview-video-row overview-diff-row" data-group="sample_2">
+          <div class="ov-cell ov-diff-label">Difference Map</div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_2/diff_angry.gif" alt="sample_2 difference map angry"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_2/diff_fear.gif" alt="sample_2 difference map fear"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_2/diff_happy.gif" alt="sample_2 difference map happy"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_2/diff_sad.gif" alt="sample_2 difference map sad"></div>
+        </div>
+
+        <div class="overview-video-row" data-group="sample_3">
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_3/f_video.gif" alt="sample_3 factual video"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_3/cf_angry.gif" alt="sample_3 counterfactual angry"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_3/cf_fear.gif" alt="sample_3 counterfactual fear"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_3/cf_happy.gif" alt="sample_3 counterfactual happy"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_3/cf_sad.gif" alt="sample_3 counterfactual sad"></div>
+        </div>
+        <div class="overview-video-row overview-diff-row" data-group="sample_3">
+          <div class="ov-cell ov-diff-label">Difference Map</div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_3/diff_angry.gif" alt="sample_3 difference map angry"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_3/diff_fear.gif" alt="sample_3 difference map fear"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_3/diff_happy.gif" alt="sample_3 difference map happy"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_3/diff_sad.gif" alt="sample_3 difference map sad"></div>
         </div>
       </div>
-      <img src="./static/figures/ferv39.jpg" alt="FER-v39k results from paper">
       <figcaption>
-       LD-ViCE generates counterfactual video
-        explanations using a latent diffusion model explicitly
-        guided by the target model.
-        By operating in latent space,
-        LD-ViCE significantly reduces computational cost while
-        maintaining temporal coherence and visual fidelity. LD-ViCE
-        integrates model feedback throughout generation, ensuring
-        causal alignment with the model’s predictions.
-        Figure shows the qualitative counterfactual results generated
-        by LD-ViCE. The first row shows four frames from three
-        original videos predicted as Surprise. The second, third, fourth,
-        and fifth rows display counterfactuals generated for the target emotion
-        classes Angry, Fear, Happy, and Sad, respectively. The generated counterfactuals
-        exhibit distinct and class-consistent facial dynamics
-        corresponding to the desired emotional categories.
+        Figure shows qualitative counterfactual results generated by
+        LD-ViCE for three source videos. For each sample, the factual
+        sequence is shown with counterfactuals targeting Angry, Fear,
+        Happy, and Sad, followed by the corresponding per-class
+        difference maps. The generated counterfactuals exhibit
+        class-consistent facial dynamics aligned with the desired targets.
       </figcaption>
+      <img src="./static/figures/ferv39.jpg" alt="FER-v39k results from paper">
     </figure>
   </div>
 </section>
@@ -232,6 +272,7 @@
           <div class="dataset-mini">
             <h3>FERV39k</h3>
             <p>A large-scale facial expression benchmark with categorical emotion labels. LD-ViCE generates class-consistent emotional transitions while preserving temporal coherence and facial realism.</p>
+            <span class="button is-light is-small dataset-cta">View Results</span>
           </div>
         </a>
       </div>
@@ -240,6 +281,7 @@
           <div class="dataset-mini">
             <h3>EchoNet-Dynamics</h3>
             <p>A cardiac ultrasound dataset with ejection-fraction regression targets. LD-ViCE provides clinically meaningful counterfactuals by editing temporal cardiac dynamics with high visual fidelity.</p>
+            <span class="button is-light is-small dataset-cta">View Results</span>
           </div>
         </a>
       </div>
@@ -248,6 +290,7 @@
           <div class="dataset-mini">
             <h3>Something-Something V2 (SSv2)</h3>
             <p>A fine-grained human-object interaction benchmark where labels depend on motion cues. LD-ViCE reveals decision-critical spatiotemporal evidence through plausible action-level counterfactuals.</p>
+            <span class="button is-light is-small dataset-cta">View Results</span>
           </div>
         </a>
       </div>
@@ -255,102 +298,535 @@
     <div class="dataset-block dataset-block-ferv39k" id="results-ferv39k">
       <a class="dataset-close" href="#results">Close results</a>
       <h3 class="title is-4">FERV39k</h3>
-      <div class="ferv-ra-table">
-        <div class="ferv-ra-row ferv-ra-header">
-          <div class="ferv-ra-cell">Original Video</div>
-          <div class="ferv-ra-cell">Counterfactual Video</div>
-          <div class="ferv-ra-cell">Difference Map</div>
-          <div class="ferv-ra-cell">Masked Counterfactual Video</div>
-          <div class="ferv-ra-cell">Difference Map</div>
+      <div class="video-controls" data-scope="results-ferv-overview-groups" role="group" aria-label="FERV39k sample filter">
+        <span class="video-controls-label">Subject:</span>
+        <button class="video-filter video-filter-thumb is-active" type="button" data-group="sample_7" aria-pressed="true" aria-label="Show sample 7">
+          <img src="./static/videos/ferv39k/sample_7/f_angry.gif" alt="FERV39k sample 7">
+        </button>
+        <button class="video-filter video-filter-thumb" type="button" data-group="sample_8" aria-pressed="false" aria-label="Show sample 8">
+          <img src="./static/videos/ferv39k/sample_8/f_angry.gif" alt="FERV39k sample 8">
+        </button>
+        <button class="video-filter video-filter-thumb" type="button" data-group="sample_9" aria-pressed="false" aria-label="Show sample 9">
+          <img src="./static/videos/ferv39k/sample_9/f_disgust.gif" alt="FERV39k sample 9">
+        </button>
+        <button class="video-filter video-filter-thumb" type="button" data-group="sample_10" aria-pressed="false" aria-label="Show sample 10">
+          <img src="./static/videos/ferv39k/sample_10/f_disgust.gif" alt="FERV39k sample 10">
+        </button>
+        <button class="video-filter video-filter-thumb" type="button" data-group="sample_11" aria-pressed="false" aria-label="Show sample 11">
+          <img src="./static/videos/ferv39k/sample_11/f_fear.gif" alt="FERV39k sample 11">
+        </button>
+        <button class="video-filter video-filter-thumb" type="button" data-group="sample_12" aria-pressed="false" aria-label="Show sample 12">
+          <img src="./static/videos/ferv39k/sample_12/f_fear.gif" alt="FERV39k sample 12">
+        </button>
+        <button class="video-filter video-filter-thumb" type="button" data-group="sample_13" aria-pressed="false" aria-label="Show sample 13">
+          <img src="./static/videos/ferv39k/sample_13/f_happy.gif" alt="FERV39k sample 13">
+        </button>
+        <button class="video-filter video-filter-thumb" type="button" data-group="sample_14" aria-pressed="false" aria-label="Show sample 14">
+          <img src="./static/videos/ferv39k/sample_14/f_happy.gif" alt="FERV39k sample 14">
+        </button>
+        <button class="video-filter video-filter-thumb" type="button" data-group="sample_15" aria-pressed="false" aria-label="Show sample 15">
+          <img src="./static/videos/ferv39k/sample_15/f_neutral.gif" alt="FERV39k sample 15">
+        </button>
+        <button class="video-filter video-filter-thumb" type="button" data-group="sample_16" aria-pressed="false" aria-label="Show sample 16">
+          <img src="./static/videos/ferv39k/sample_16/f_neutral.gif" alt="FERV39k sample 16">
+        </button>
+        <button class="video-filter video-filter-thumb" type="button" data-group="sample_17" aria-pressed="false" aria-label="Show sample 17">
+          <img src="./static/videos/ferv39k/sample_17/f_sad.gif" alt="FERV39k sample 17">
+        </button>
+        <button class="video-filter video-filter-thumb" type="button" data-group="sample_18" aria-pressed="false" aria-label="Show sample 18">
+          <img src="./static/videos/ferv39k/sample_18/f_sad.gif" alt="FERV39k sample 18">
+        </button>
+        <button class="video-filter video-filter-thumb" type="button" data-group="sample_1" aria-pressed="false" aria-label="Show sample 1">
+          <img src="./static/videos/ferv39k/sample_1/f_surprise.gif" alt="FERV39k sample 1">
+        </button>
+        <button class="video-filter video-filter-thumb" type="button" data-group="sample_19" aria-pressed="false" aria-label="Show sample 19">
+          <img src="./static/videos/ferv39k/sample_19/f_surprise.gif" alt="FERV39k sample 19">
+        </button>
+        <button class="video-filter" type="button" data-group="all" aria-pressed="false">All</button>
+      </div>
+      <p class="video-controls-help">Click emotion buttons to select or unselect. You can choose one, multiple, or all counterfactual emotions.</p>
+      <div class="video-controls video-class-controls" data-class-scope="results-ferv-overview-groups" role="group" aria-label="FERV39k class filter">
+        <span class="video-controls-label">Target Emotion:</span>
+        <button class="video-filter video-class-filter is-active" type="button" data-class="angry" aria-pressed="true">Angry</button>
+        <button class="video-filter video-class-filter" type="button" data-class="disgust" aria-pressed="false">Disgust</button>
+        <button class="video-filter video-class-filter" type="button" data-class="fear" aria-pressed="false">Fear</button>
+        <button class="video-filter video-class-filter" type="button" data-class="happy" aria-pressed="false">Happy</button>
+        <button class="video-filter video-class-filter" type="button" data-class="neutral" aria-pressed="false">Neutral</button>
+        <button class="video-filter video-class-filter" type="button" data-class="sad" aria-pressed="false">Sad</button>
+        <button class="video-filter video-class-filter" type="button" data-class="surprise" aria-pressed="false">Surprise</button>
+        <button class="video-filter video-class-filter" type="button" data-class="all" aria-pressed="false">All Emotion</button>
+      </div>
+      <div class="video-controls" data-diff-scope="results-ferv-overview-groups" role="group" aria-label="FERV39k difference-map visibility">
+        <span class="video-controls-label">Difference map:</span>
+        <button class="video-filter overview-diff-filter is-active" type="button" data-diff-mode="hide" aria-pressed="true">Hide</button>
+        <button class="video-filter overview-diff-filter" type="button" data-diff-mode="show" aria-pressed="false">Show</button>
+      </div>
+      <div class="video-controls video-motion-row" data-motion-scope="results-ferv-overview-groups" aria-label="FERV39k motion control">
+        <span class="video-controls-help-inline">Tip: click any GIF to pause/play.</span>
+      </div>
+      <div class="overview-videos" id="results-ferv-overview-groups">
+        <div class="overview-video-row overview-video-header overview-video-header-top">
+          <div class="ov-cell ov-group-original">Original Video</div>
+          <div class="ov-cell ov-group-ce">Counterfactual Videos</div>
         </div>
-
-        <div class="ferv-ra-row sample1-ra">
-          <div class="ferv-ra-label label-neutral">Neutral</div>
-          <div class="ferv-ra-cell"><img src="./static/videos/ferv39k/sample2_ra/f_video.gif" alt="sample2_ra factual video"></div>
-          <div class="ferv-ra-label label-happy">Happy</div>
-          <div class="ferv-ra-cell"><img src="./static/videos/ferv39k/sample2_ra/cf_video.gif" alt="sample2_ra cf video"></div>
-          <div class="ferv-ra-cell"><img src="./static/videos/ferv39k/sample2_ra/f_cf_diff_video.gif" alt="sample2_ra f cf diff video"></div>
-          <div class="ferv-ra-label label-happy">Happy</div>
-          <div class="ferv-ra-cell"><img src="./static/videos/ferv39k/sample2_ra/mcf_video.gif" alt="sample2_ra mcf video"></div>
-          <div class="ferv-ra-cell"><img src="./static/videos/ferv39k/sample2_ra/f_mcf_diff_video.gif" alt="sample2_ra f mcf diff video"></div>
+        <div class="overview-video-row overview-video-header" data-group="sample_7">
+          <div class="ov-cell class-angry">Angry</div>
+          <div class="ov-cell class-disgust">Disgust</div>
+          <div class="ov-cell class-fear">Fear</div>
+          <div class="ov-cell class-happy">Happy</div>
+          <div class="ov-cell class-neutral">Neutral</div>
+          <div class="ov-cell class-sad">Sad</div>
+          <div class="ov-cell class-surprise">Surprise</div>
         </div>
-
-        <div class="ferv-ra-row sample2-ra">
-          <div class="ferv-ra-label label-angry">Angry</div>
-          <div class="ferv-ra-cell"><img src="./static/videos/ferv39k/sample3_ra/f_video.gif" alt="sample3_ra factual video"></div>
-          <div class="ferv-ra-label label-sad">Sad</div>
-          <div class="ferv-ra-cell"><img src="./static/videos/ferv39k/sample3_ra/cf_video.gif" alt="sample3_ra cf video"></div>
-          <div class="ferv-ra-cell"><img src="./static/videos/ferv39k/sample3_ra/f_cf_diff_video.gif" alt="sample3_ra f cf diff video"></div>
-          <div class="ferv-ra-label label-sad">Sad</div>
-          <div class="ferv-ra-cell"><img src="./static/videos/ferv39k/sample3_ra/mcf_video.gif" alt="sample3_ra mcf video"></div>
-          <div class="ferv-ra-cell"><img src="./static/videos/ferv39k/sample3_ra/f_mcf_diff_video.gif" alt="sample3_ra f mcf diff video"></div>
+        <div class="overview-video-row" data-group="sample_7">
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_7/f_angry.gif" alt="sample_7 factual angry"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_7/cf_disgust.gif" alt="sample_7 counterfactual disgust"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_7/cf_fear.gif" alt="sample_7 counterfactual fear"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_7/cf_happy.gif" alt="sample_7 counterfactual happy"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_7/cf_neutral.gif" alt="sample_7 counterfactual neutral"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_7/cf_sad.gif" alt="sample_7 counterfactual sad"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_7/cf_surprise.gif" alt="sample_7 counterfactual surprise"></div>
         </div>
-
-        <div class="ferv-ra-row sample3-ra">
-          <div class="ferv-ra-label label-fear">Fear</div>
-          <div class="ferv-ra-cell"><img src="./static/videos/ferv39k/sample4_ra/f_video.gif" alt="sample4_ra factual video"></div>
-          <div class="ferv-ra-label label-angry">Angry</div>
-          <div class="ferv-ra-cell"><img src="./static/videos/ferv39k/sample4_ra/cf_video.gif" alt="sample4_ra cf video"></div>
-          <div class="ferv-ra-cell"><img src="./static/videos/ferv39k/sample4_ra/f_cf_diff_video.gif" alt="sample4_ra f cf diff video"></div>
-          <div class="ferv-ra-label label-angry">Angry</div>
-          <div class="ferv-ra-cell"><img src="./static/videos/ferv39k/sample4_ra/mcf_video.gif" alt="sample4_ra mcf video"></div>
-          <div class="ferv-ra-cell"><img src="./static/videos/ferv39k/sample4_ra/f_mcf_diff_video.gif" alt="sample3_ra f mcf diff video"></div>
+        <div class="overview-video-row overview-diff-row" data-group="sample_7">
+          <div class="ov-cell ov-diff-label">Difference Map</div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_7/diff_disgust.gif" alt="sample_7 difference map disgust"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_7/diff_fear.gif" alt="sample_7 difference map fear"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_7/diff_happy.gif" alt="sample_7 difference map happy"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_7/diff_neutral.gif" alt="sample_7 difference map neutral"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_7/diff_sad.gif" alt="sample_7 difference map sad"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_7/diff_surprise.gif" alt="sample_7 difference map surprise"></div>
+        </div>
+        <div class="overview-video-row overview-video-header" data-group="sample_8">
+          <div class="ov-cell class-angry">Angry</div>
+          <div class="ov-cell class-disgust">Disgust</div>
+          <div class="ov-cell class-fear">Fear</div>
+          <div class="ov-cell class-happy">Happy</div>
+          <div class="ov-cell class-neutral">Neutral</div>
+          <div class="ov-cell class-sad">Sad</div>
+          <div class="ov-cell class-surprise">Surprise</div>
+        </div>
+        <div class="overview-video-row" data-group="sample_8">
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_8/f_angry.gif" alt="sample_8 factual angry"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_8/cf_disgust.gif" alt="sample_8 counterfactual disgust"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_8/cf_fear.gif" alt="sample_8 counterfactual fear"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_8/cf_happy.gif" alt="sample_8 counterfactual happy"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_8/cf_neutral.gif" alt="sample_8 counterfactual neutral"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_8/cf_sad.gif" alt="sample_8 counterfactual sad"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_8/cf_surprise.gif" alt="sample_8 counterfactual surprise"></div>
+        </div>
+        <div class="overview-video-row overview-diff-row" data-group="sample_8">
+          <div class="ov-cell ov-diff-label">Difference Map</div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_8/diff_disgust.gif" alt="sample_8 difference map disgust"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_8/diff_fear.gif" alt="sample_8 difference map fear"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_8/diff_happy.gif" alt="sample_8 difference map happy"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_8/diff_neutral.gif" alt="sample_8 difference map neutral"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_8/diff_sad.gif" alt="sample_8 difference map sad"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_8/diff_surprise.gif" alt="sample_8 difference map surprise"></div>
+        </div>
+        <div class="overview-video-row overview-video-header" data-group="sample_9">
+          <div class="ov-cell class-disgust">Disgust</div>
+          <div class="ov-cell class-angry">Angry</div>
+          <div class="ov-cell class-fear">Fear</div>
+          <div class="ov-cell class-happy">Happy</div>
+          <div class="ov-cell class-neutral">Neutral</div>
+          <div class="ov-cell class-sad">Sad</div>
+          <div class="ov-cell class-surprise">Surprise</div>
+        </div>
+        <div class="overview-video-row" data-group="sample_9">
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_9/f_disgust.gif" alt="sample_9 factual disgust"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_9/cf_angry.gif" alt="sample_9 counterfactual angry"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_9/cf_fear.gif" alt="sample_9 counterfactual fear"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_9/cf_happy.gif" alt="sample_9 counterfactual happy"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_9/cf_neutral.gif" alt="sample_9 counterfactual neutral"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_9/cf_sad.gif" alt="sample_9 counterfactual sad"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_9/cf_surprise.gif" alt="sample_9 counterfactual surprise"></div>
+        </div>
+        <div class="overview-video-row overview-diff-row" data-group="sample_9">
+          <div class="ov-cell ov-diff-label">Difference Map</div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_9/diff_angry.gif" alt="sample_9 difference map angry"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_9/diff_fear.gif" alt="sample_9 difference map fear"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_9/diff_happy.gif" alt="sample_9 difference map happy"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_9/diff_neutral.gif" alt="sample_9 difference map neutral"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_9/diff_sad.gif" alt="sample_9 difference map sad"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_9/diff_surprise.gif" alt="sample_9 difference map surprise"></div>
+        </div>
+        <div class="overview-video-row overview-video-header" data-group="sample_10">
+          <div class="ov-cell class-disgust">Disgust</div>
+          <div class="ov-cell class-angry">Angry</div>
+          <div class="ov-cell class-fear">Fear</div>
+          <div class="ov-cell class-happy">Happy</div>
+          <div class="ov-cell class-neutral">Neutral</div>
+          <div class="ov-cell class-sad">Sad</div>
+          <div class="ov-cell class-surprise">Surprise</div>
+        </div>
+        <div class="overview-video-row" data-group="sample_10">
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_10/f_disgust.gif" alt="sample_10 factual disgust"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_10/cf_angry.gif" alt="sample_10 counterfactual angry"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_10/cf_fear.gif" alt="sample_10 counterfactual fear"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_10/cf_happy.gif" alt="sample_10 counterfactual happy"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_10/cf_neutral.gif" alt="sample_10 counterfactual neutral"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_10/cf_sad.gif" alt="sample_10 counterfactual sad"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_10/cf_surprise.gif" alt="sample_10 counterfactual surprise"></div>
+        </div>
+        <div class="overview-video-row overview-diff-row" data-group="sample_10">
+          <div class="ov-cell ov-diff-label">Difference Map</div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_10/diff_angry.gif" alt="sample_10 difference map angry"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_10/diff_fear.gif" alt="sample_10 difference map fear"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_10/diff_happy.gif" alt="sample_10 difference map happy"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_10/diff_neutral.gif" alt="sample_10 difference map neutral"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_10/diff_sad.gif" alt="sample_10 difference map sad"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_10/diff_surprise.gif" alt="sample_10 difference map surprise"></div>
+        </div>
+        <div class="overview-video-row overview-video-header" data-group="sample_11">
+          <div class="ov-cell class-fear">Fear</div>
+          <div class="ov-cell class-angry">Angry</div>
+          <div class="ov-cell class-disgust">Disgust</div>
+          <div class="ov-cell class-happy">Happy</div>
+          <div class="ov-cell class-neutral">Neutral</div>
+          <div class="ov-cell class-sad">Sad</div>
+          <div class="ov-cell class-surprise">Surprise</div>
+        </div>
+        <div class="overview-video-row" data-group="sample_11">
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_11/f_fear.gif" alt="sample_11 factual fear"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_11/cf_angry.gif" alt="sample_11 counterfactual angry"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_11/cf_disgust.gif" alt="sample_11 counterfactual disgust"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_11/cf_happy.gif" alt="sample_11 counterfactual happy"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_11/cf_neutral.gif" alt="sample_11 counterfactual neutral"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_11/cf_sad.gif" alt="sample_11 counterfactual sad"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_11/cf_surprise.gif" alt="sample_11 counterfactual surprise"></div>
+        </div>
+        <div class="overview-video-row overview-diff-row" data-group="sample_11">
+          <div class="ov-cell ov-diff-label">Difference Map</div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_11/diff_angry.gif" alt="sample_11 difference map angry"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_11/diff_disgust.gif" alt="sample_11 difference map disgust"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_11/diff_happy.gif" alt="sample_11 difference map happy"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_11/diff_neutral.gif" alt="sample_11 difference map neutral"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_11/diff_sad.gif" alt="sample_11 difference map sad"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_11/diff_surprise.gif" alt="sample_11 difference map surprise"></div>
+        </div>
+        <div class="overview-video-row overview-video-header" data-group="sample_12">
+          <div class="ov-cell class-fear">Fear</div>
+          <div class="ov-cell class-angry">Angry</div>
+          <div class="ov-cell class-disgust">Disgust</div>
+          <div class="ov-cell class-happy">Happy</div>
+          <div class="ov-cell class-neutral">Neutral</div>
+          <div class="ov-cell class-sad">Sad</div>
+          <div class="ov-cell class-surprise">Surprise</div>
+        </div>
+        <div class="overview-video-row" data-group="sample_12">
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_12/f_fear.gif" alt="sample_12 factual fear"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_12/cf_angry.gif" alt="sample_12 counterfactual angry"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_12/cf_disgust.gif" alt="sample_12 counterfactual disgust"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_12/cf_happy.gif" alt="sample_12 counterfactual happy"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_12/cf_neutral.gif" alt="sample_12 counterfactual neutral"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_12/cf_sad.gif" alt="sample_12 counterfactual sad"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_12/cf_surprise.gif" alt="sample_12 counterfactual surprise"></div>
+        </div>
+        <div class="overview-video-row overview-diff-row" data-group="sample_12">
+          <div class="ov-cell ov-diff-label">Difference Map</div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_12/diff_angry.gif" alt="sample_12 difference map angry"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_12/diff_disgust.gif" alt="sample_12 difference map disgust"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_12/diff_happy.gif" alt="sample_12 difference map happy"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_12/diff_neutral.gif" alt="sample_12 difference map neutral"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_12/diff_sad.gif" alt="sample_12 difference map sad"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_12/diff_surprise.gif" alt="sample_12 difference map surprise"></div>
+        </div>
+        <div class="overview-video-row overview-video-header" data-group="sample_13">
+          <div class="ov-cell class-happy">Happy</div>
+          <div class="ov-cell class-angry">Angry</div>
+          <div class="ov-cell class-disgust">Disgust</div>
+          <div class="ov-cell class-fear">Fear</div>
+          <div class="ov-cell class-neutral">Neutral</div>
+          <div class="ov-cell class-sad">Sad</div>
+          <div class="ov-cell class-surprise">Surprise</div>
+        </div>
+        <div class="overview-video-row" data-group="sample_13">
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_13/f_happy.gif" alt="sample_13 factual happy"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_13/cf_angry.gif" alt="sample_13 counterfactual angry"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_13/cf_disgust.gif" alt="sample_13 counterfactual disgust"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_13/cf_fear.gif" alt="sample_13 counterfactual fear"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_13/cf_neutral.gif" alt="sample_13 counterfactual neutral"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_13/cf_sad.gif" alt="sample_13 counterfactual sad"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_13/cf_surprise.gif" alt="sample_13 counterfactual surprise"></div>
+        </div>
+        <div class="overview-video-row overview-diff-row" data-group="sample_13">
+          <div class="ov-cell ov-diff-label">Difference Map</div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_13/diff_angry.gif" alt="sample_13 difference map angry"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_13/diff_disgust.gif" alt="sample_13 difference map disgust"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_13/diff_fear.gif" alt="sample_13 difference map fear"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_13/diff_neutral.gif" alt="sample_13 difference map neutral"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_13/diff_sad.gif" alt="sample_13 difference map sad"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_13/diff_surprise.gif" alt="sample_13 difference map surprise"></div>
+        </div>
+        <div class="overview-video-row overview-video-header" data-group="sample_14">
+          <div class="ov-cell class-happy">Happy</div>
+          <div class="ov-cell class-angry">Angry</div>
+          <div class="ov-cell class-disgust">Disgust</div>
+          <div class="ov-cell class-fear">Fear</div>
+          <div class="ov-cell class-neutral">Neutral</div>
+          <div class="ov-cell class-sad">Sad</div>
+          <div class="ov-cell class-surprise">Surprise</div>
+        </div>
+        <div class="overview-video-row" data-group="sample_14">
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_14/f_happy.gif" alt="sample_14 factual happy"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_14/cf_angry.gif" alt="sample_14 counterfactual angry"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_14/cf_disgust.gif" alt="sample_14 counterfactual disgust"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_14/cf_fear.gif" alt="sample_14 counterfactual fear"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_14/cf_neutral.gif" alt="sample_14 counterfactual neutral"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_14/cf_sad.gif" alt="sample_14 counterfactual sad"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_14/cf_surprise.gif" alt="sample_14 counterfactual surprise"></div>
+        </div>
+        <div class="overview-video-row overview-diff-row" data-group="sample_14">
+          <div class="ov-cell ov-diff-label">Difference Map</div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_14/diff_angry.gif" alt="sample_14 difference map angry"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_14/diff_disgust.gif" alt="sample_14 difference map disgust"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_14/diff_fear.gif" alt="sample_14 difference map fear"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_14/diff_neutral.gif" alt="sample_14 difference map neutral"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_14/diff_sad.gif" alt="sample_14 difference map sad"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_14/diff_surprise.gif" alt="sample_14 difference map surprise"></div>
+        </div>
+        <div class="overview-video-row overview-video-header" data-group="sample_15">
+          <div class="ov-cell class-neutral">Neutral</div>
+          <div class="ov-cell class-angry">Angry</div>
+          <div class="ov-cell class-disgust">Disgust</div>
+          <div class="ov-cell class-fear">Fear</div>
+          <div class="ov-cell class-happy">Happy</div>
+          <div class="ov-cell class-sad">Sad</div>
+          <div class="ov-cell class-surprise">Surprise</div>
+        </div>
+        <div class="overview-video-row" data-group="sample_15">
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_15/f_neutral.gif" alt="sample_15 factual neutral"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_15/cf_angry.gif" alt="sample_15 counterfactual angry"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_15/cf_disgust.gif" alt="sample_15 counterfactual disgust"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_15/cf_fear.gif" alt="sample_15 counterfactual fear"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_15/cf_happy.gif" alt="sample_15 counterfactual happy"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_15/cf_sad.gif" alt="sample_15 counterfactual sad"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_15/cf_surprise.gif" alt="sample_15 counterfactual surprise"></div>
+        </div>
+        <div class="overview-video-row overview-diff-row" data-group="sample_15">
+          <div class="ov-cell ov-diff-label">Difference Map</div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_15/diff_angry.gif" alt="sample_15 difference map angry"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_15/diff_disgust.gif" alt="sample_15 difference map disgust"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_15/diff_fear.gif" alt="sample_15 difference map fear"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_15/diff_happy.gif" alt="sample_15 difference map happy"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_15/diff_sad.gif" alt="sample_15 difference map sad"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_15/diff_surprise.gif" alt="sample_15 difference map surprise"></div>
+        </div>
+        <div class="overview-video-row overview-video-header" data-group="sample_16">
+          <div class="ov-cell class-neutral">Neutral</div>
+          <div class="ov-cell class-angry">Angry</div>
+          <div class="ov-cell class-disgust">Disgust</div>
+          <div class="ov-cell class-fear">Fear</div>
+          <div class="ov-cell class-happy">Happy</div>
+          <div class="ov-cell class-sad">Sad</div>
+          <div class="ov-cell class-surprise">Surprise</div>
+        </div>
+        <div class="overview-video-row" data-group="sample_16">
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_16/f_neutral.gif" alt="sample_16 factual neutral"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_16/cf_angry.gif" alt="sample_16 counterfactual angry"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_16/cf_disgust.gif" alt="sample_16 counterfactual disgust"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_16/cf_fear.gif" alt="sample_16 counterfactual fear"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_16/cf_happy.gif" alt="sample_16 counterfactual happy"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_16/cf_sad.gif" alt="sample_16 counterfactual sad"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_16/cf_surprise.gif" alt="sample_16 counterfactual surprise"></div>
+        </div>
+        <div class="overview-video-row overview-diff-row" data-group="sample_16">
+          <div class="ov-cell ov-diff-label">Difference Map</div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_16/diff_angry.gif" alt="sample_16 difference map angry"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_16/diff_disgust.gif" alt="sample_16 difference map disgust"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_16/diff_fear.gif" alt="sample_16 difference map fear"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_16/diff_happy.gif" alt="sample_16 difference map happy"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_16/diff_sad.gif" alt="sample_16 difference map sad"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_16/diff_surprise.gif" alt="sample_16 difference map surprise"></div>
+        </div>
+        <div class="overview-video-row overview-video-header" data-group="sample_17">
+          <div class="ov-cell class-sad">Sad</div>
+          <div class="ov-cell class-angry">Angry</div>
+          <div class="ov-cell class-disgust">Disgust</div>
+          <div class="ov-cell class-fear">Fear</div>
+          <div class="ov-cell class-happy">Happy</div>
+          <div class="ov-cell class-neutral">Neutral</div>
+          <div class="ov-cell class-surprise">Surprise</div>
+        </div>
+        <div class="overview-video-row" data-group="sample_17">
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_17/f_sad.gif" alt="sample_17 factual sad"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_17/cf_angry.gif" alt="sample_17 counterfactual angry"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_17/cf_disgust.gif" alt="sample_17 counterfactual disgust"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_17/cf_fear.gif" alt="sample_17 counterfactual fear"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_17/cf_happy.gif" alt="sample_17 counterfactual happy"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_17/cf_neutral.gif" alt="sample_17 counterfactual neutral"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_17/cf_surprise.gif" alt="sample_17 counterfactual surprise"></div>
+        </div>
+        <div class="overview-video-row overview-diff-row" data-group="sample_17">
+          <div class="ov-cell ov-diff-label">Difference Map</div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_17/diff_angry.gif" alt="sample_17 difference map angry"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_17/diff_disgust.gif" alt="sample_17 difference map disgust"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_17/diff_fear.gif" alt="sample_17 difference map fear"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_17/diff_happy.gif" alt="sample_17 difference map happy"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_17/diff_neutral.gif" alt="sample_17 difference map neutral"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_17/diff_surprise.gif" alt="sample_17 difference map surprise"></div>
+        </div>
+        <div class="overview-video-row overview-video-header" data-group="sample_18">
+          <div class="ov-cell class-sad">Sad</div>
+          <div class="ov-cell class-angry">Angry</div>
+          <div class="ov-cell class-disgust">Disgust</div>
+          <div class="ov-cell class-fear">Fear</div>
+          <div class="ov-cell class-happy">Happy</div>
+          <div class="ov-cell class-neutral">Neutral</div>
+          <div class="ov-cell class-surprise">Surprise</div>
+        </div>
+        <div class="overview-video-row" data-group="sample_18">
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_18/f_sad.gif" alt="sample_18 factual sad"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_18/cf_angry.gif" alt="sample_18 counterfactual angry"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_18/cf_disgust.gif" alt="sample_18 counterfactual disgust"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_18/cf_fear.gif" alt="sample_18 counterfactual fear"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_18/cf_happy.gif" alt="sample_18 counterfactual happy"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_18/cf_neutral.gif" alt="sample_18 counterfactual neutral"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_18/cf_surprise.gif" alt="sample_18 counterfactual surprise"></div>
+        </div>
+        <div class="overview-video-row overview-diff-row" data-group="sample_18">
+          <div class="ov-cell ov-diff-label">Difference Map</div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_18/diff_angry.gif" alt="sample_18 difference map angry"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_18/diff_disgust.gif" alt="sample_18 difference map disgust"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_18/diff_fear.gif" alt="sample_18 difference map fear"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_18/diff_happy.gif" alt="sample_18 difference map happy"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_18/diff_neutral.gif" alt="sample_18 difference map neutral"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_18/diff_surprise.gif" alt="sample_18 difference map surprise"></div>
+        </div>
+        <div class="overview-video-row overview-video-header" data-group="sample_1">
+          <div class="ov-cell class-surprise">Surprise</div>
+          <div class="ov-cell class-angry">Angry</div>
+          <div class="ov-cell class-disgust">Disgust</div>
+          <div class="ov-cell class-fear">Fear</div>
+          <div class="ov-cell class-happy">Happy</div>
+          <div class="ov-cell class-neutral">Neutral</div>
+          <div class="ov-cell class-sad">Sad</div>
+        </div>
+        <div class="overview-video-row" data-group="sample_1">
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_1/f_surprise.gif" alt="sample_1 factual surprise"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_1/cf_angry.gif" alt="sample_1 counterfactual angry"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_1/cf_disgust.gif" alt="sample_1 counterfactual disgust"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_1/cf_fear.gif" alt="sample_1 counterfactual fear"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_1/cf_happy.gif" alt="sample_1 counterfactual happy"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_1/cf_neutral.gif" alt="sample_1 counterfactual neutral"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_1/cf_sad.gif" alt="sample_1 counterfactual sad"></div>
+        </div>
+        <div class="overview-video-row overview-diff-row" data-group="sample_1">
+          <div class="ov-cell ov-diff-label">Difference Map</div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_1/diff_angry.gif" alt="sample_1 difference map angry"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_1/diff_disgust.gif" alt="sample_1 difference map disgust"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_1/diff_fear.gif" alt="sample_1 difference map fear"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_1/diff_happy.gif" alt="sample_1 difference map happy"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_1/diff_neutral.gif" alt="sample_1 difference map neutral"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_1/diff_sad.gif" alt="sample_1 difference map sad"></div>
+        </div>
+        <div class="overview-video-row overview-video-header" data-group="sample_19">
+          <div class="ov-cell class-surprise">Surprise</div>
+          <div class="ov-cell class-angry">Angry</div>
+          <div class="ov-cell class-disgust">Disgust</div>
+          <div class="ov-cell class-fear">Fear</div>
+          <div class="ov-cell class-happy">Happy</div>
+          <div class="ov-cell class-neutral">Neutral</div>
+          <div class="ov-cell class-sad">Sad</div>
+        </div>
+        <div class="overview-video-row" data-group="sample_19">
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_19/f_surprise.gif" alt="sample_19 factual surprise"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_19/cf_angry.gif" alt="sample_19 counterfactual angry"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_19/cf_disgust.gif" alt="sample_19 counterfactual disgust"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_19/cf_fear.gif" alt="sample_19 counterfactual fear"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_19/cf_happy.gif" alt="sample_19 counterfactual happy"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_19/cf_neutral.gif" alt="sample_19 counterfactual neutral"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_19/cf_sad.gif" alt="sample_19 counterfactual sad"></div>
+        </div>
+        <div class="overview-video-row overview-diff-row" data-group="sample_19">
+          <div class="ov-cell ov-diff-label">Difference Map</div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_19/diff_angry.gif" alt="sample_19 difference map angry"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_19/diff_disgust.gif" alt="sample_19 difference map disgust"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_19/diff_fear.gif" alt="sample_19 difference map fear"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_19/diff_happy.gif" alt="sample_19 difference map happy"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_19/diff_neutral.gif" alt="sample_19 difference map neutral"></div>
+          <div class="ov-cell"><img src="./static/videos/ferv39k/sample_19/diff_sad.gif" alt="sample_19 difference map sad"></div>
         </div>
       </div>
       <figure class="paper-figure compact">
-        <img src="./static/figures/ferv39k-RA.jpg" alt="LD-ViCE vs LD-ViCE-RA on FERV39K">
-        <figcaption>
-          Qualitative comparison of counterfactuals generated by LD-ViCE
-          and its RA variant on the FERV39K dataset. The figure shows
-          three representative samples, each consisting of four frames
-          from the original video (top row) and the corresponding
-          counterfactuals generated by LD-ViCE and LD-ViCE-RA, with
-          their corresponding difference maps. Original and target emotion
-          classes are indicated on the left side of each example. The
-          LD-ViCE-RA variant focuses more precisely on expression-relevant
-          facial regions while maintaining realistic appearance and temporal
-          coherence.
+        <figcaption id="results-ferv-qual-caption">
+          Qualitative counterfactual results generated by LD-ViCE on the
+          FERV39k dataset, transforming the predicted class emotion
+          <strong><em>Surprise into each of the other emotion classes</em></strong>.
+          The generated counterfactuals exhibit distinct and class-consistent
+          facial dynamics corresponding to the desired emotional categories.
         </figcaption>
+        <img id="results-ferv-qual-figure" src="./static/videos/ferv39k/sample_1/ferv39k_sample1.jpg" alt="LD-ViCE counterfactual results on FERV39k sample 1">
       </figure>
     </div>
 
     <div class="dataset-block dataset-block-echonet" id="results-echonet">
       <a class="dataset-close" href="#results">Close results</a>
-      <h3 class="title is-4">EchoNet</h3>
+      <h3 class="title is-4">EchoNet-Dynamics</h3>
+      <div class="video-controls" data-echonet-scope="results-echonet-rows" role="group" aria-label="EchoNet sample filter">
+        <span class="video-controls-label">Sample:</span>
+        <button class="video-filter video-filter-thumb echonet-sample-filter is-active" type="button" data-echonet-sample="sample_1" aria-pressed="true" aria-label="Show sample 1">
+          <img src="./static/videos/echonet/sample_1/f_video.gif" alt="EchoNet sample 1">
+        </button>
+        <button class="video-filter video-filter-thumb echonet-sample-filter" type="button" data-echonet-sample="sample_2" aria-pressed="false" aria-label="Show sample 2">
+          <img src="./static/videos/echonet/sample_2/f_video.gif" alt="EchoNet sample 2">
+        </button>
+        <button class="video-filter video-filter-thumb echonet-sample-filter" type="button" data-echonet-sample="sample_3" aria-pressed="false" aria-label="Show sample 3">
+          <img src="./static/videos/echonet/sample_3/f_video.gif" alt="EchoNet sample 3">
+        </button>
+        <button class="video-filter echonet-sample-filter" type="button" data-echonet-sample="all" aria-pressed="false">All</button>
+      </div>
+      <div class="video-controls" data-echonet-scope="results-echonet-rows" role="group" aria-label="EchoNet view filter">
+        <span class="video-controls-label">View:</span>
+        <button class="video-filter echonet-view-filter is-active" type="button" data-echonet-view="cf" aria-pressed="true">Counterfactual Video</button>
+        <button class="video-filter echonet-view-filter" type="button" data-echonet-view="mcf" aria-pressed="false">Masked Counterfactual Video</button>
+        <button class="video-filter echonet-view-filter" type="button" data-echonet-view="both" aria-pressed="false">Both</button>
+      </div>
+      <div class="video-controls video-motion-row" data-motion-scope="results-echonet-rows" aria-label="EchoNet motion control">
+        <span class="video-controls-help-inline">Tip: click any GIF to pause/play.</span>
+      </div>
       <div class="echonet-table-wrap">
-        <table class="echonet-table">
+        <table class="echonet-table" id="results-echonet-rows" data-echonet-filterable="true">
           <thead>
             <tr>
-              <th>Type</th>
-              <th>Sample 1</th>
-              <th>Sample 2</th>
-              <th>Sample 3</th>
-              <th>Sample 4</th>
-              <th>Sample 5</th>
+              <th data-echonet-col="original">Original Video</th>
+              <th data-echonet-col="cf">Counterfactual Video</th>
+              <th data-echonet-col="cfdiff">Difference Map</th>
+              <th data-echonet-col="mcf">Masked Counterfactual Video</th>
+              <th data-echonet-col="mcfdiff">Difference Map</th>
+              <th data-echonet-col="reynaud">Reynaud et al.</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Original Video</td>
-              <td><img src="./static/videos/echonet/sample1/f_video.gif" alt="Echo sample1 factual"></td>
-              <td><img src="./static/videos/echonet/sample2/f_video.gif" alt="Echo sample2 factual"></td>
-              <td><img src="./static/videos/echonet/sample3/f_video.gif" alt="Echo sample3 factual"></td>
-              <td><img src="./static/videos/echonet/sample4/f_video.gif" alt="Echo sample4 factual"></td>
-              <td><img src="./static/videos/echonet/sample5/f_video.gif" alt="Echo sample5 factual"></td>
+            <tr data-echonet-row="sample_1">
+              <td data-echonet-col="original"><img src="./static/videos/echonet/sample_1/f_video.gif" alt="Echo sample1 factual"></td>
+              <td data-echonet-col="cf"><img src="./static/videos/echonet/sample_1/cf_video.gif" alt="Echo sample1 counterfactual"></td>
+              <td data-echonet-col="cfdiff"><img src="./static/videos/echonet/sample_1/f_cf_diff_video.gif" alt="Echo sample1 f-cf diff"></td>
+              <td data-echonet-col="mcf"><img src="./static/videos/echonet/sample_1/mcf_video.gif" alt="Echo sample1 masked counterfactual"></td>
+              <td data-echonet-col="mcfdiff"><img src="./static/videos/echonet/sample_1/f_mcf_diff_video.gif" alt="Echo sample1 f-mcf diff"></td>
+              <td data-echonet-col="reynaud"><img src="./static/videos/echonet/sample_1/echo_diffusion.gif" alt="Echo sample1 Reynaud et al."></td>
             </tr>
-            <tr>
-              <td>Counterfactual Video</td>
-              <td><img src="./static/videos/echonet/sample1/cf_video.gif" alt="Echo sample1 counterfactual"></td>
-              <td><img src="./static/videos/echonet/sample2/cf_video.gif" alt="Echo sample2 counterfactual"></td>
-              <td><img src="./static/videos/echonet/sample3/cf_video.gif" alt="Echo sample3 counterfactual"></td>
-              <td><img src="./static/videos/echonet/sample4/cf_video.gif" alt="Echo sample4 counterfactual"></td>
-              <td><img src="./static/videos/echonet/sample5/cf_video.gif" alt="Echo sample5 counterfactual"></td>
+            <tr data-echonet-row="sample_2">
+              <td data-echonet-col="original"><img src="./static/videos/echonet/sample_2/f_video.gif" alt="Echo sample2 factual"></td>
+              <td data-echonet-col="cf"><img src="./static/videos/echonet/sample_2/cf_video.gif" alt="Echo sample2 counterfactual"></td>
+              <td data-echonet-col="cfdiff"><img src="./static/videos/echonet/sample_2/f_cf_diff_video.gif" alt="Echo sample2 f-cf diff"></td>
+              <td data-echonet-col="mcf"><img src="./static/videos/echonet/sample_2/mcf_video.gif" alt="Echo sample2 masked counterfactual"></td>
+              <td data-echonet-col="mcfdiff"><img src="./static/videos/echonet/sample_2/f_mcf_diff_video.gif" alt="Echo sample2 f-mcf diff"></td>
+              <td data-echonet-col="reynaud"><img src="./static/videos/echonet/sample_2/echo_diffusion.gif" alt="Echo sample2 Reynaud et al."></td>
+            </tr>
+            <tr data-echonet-row="sample_3">
+              <td data-echonet-col="original"><img src="./static/videos/echonet/sample_3/f_video.gif" alt="Echo sample3 factual"></td>
+              <td data-echonet-col="cf"><img src="./static/videos/echonet/sample_3/cf_video.gif" alt="Echo sample3 counterfactual"></td>
+              <td data-echonet-col="cfdiff"><img src="./static/videos/echonet/sample_3/f_cf_diff_video.gif" alt="Echo sample3 f-cf diff"></td>
+              <td data-echonet-col="mcf"><img src="./static/videos/echonet/sample_3/mcf_video.gif" alt="Echo sample3 masked counterfactual"></td>
+              <td data-echonet-col="mcfdiff"><img src="./static/videos/echonet/sample_3/f_mcf_diff_video.gif" alt="Echo sample3 f-mcf diff"></td>
+              <td data-echonet-col="reynaud"><img src="./static/videos/echonet/sample_3/echo_diffusion.gif" alt="Echo sample3 Reynaud et al."></td>
             </tr>
           </tbody>
         </table>
       </div>
       <figure class="paper-figure compact">
-        <img src="./static/figures/echonet.jpg" alt="EchoNet qualitative figure">
+        <img id="results-echonet-qual-figure" src="./static/videos/echonet/sample_1/echonet_sample_268.jpg" alt="EchoNet sample qualitative figure">
         <figcaption>
           Qualitative comparison of counterfactual explanations on the
           EchoNet-Dynamics dataset. The first row shows eight frames
@@ -367,8 +843,33 @@
     <div class="dataset-block dataset-block-ssv2" id="results-ssv2">
       <a class="dataset-close" href="#results">Close results</a>
       <h3 class="title is-4">Something-Something V2</h3>
+      <div class="video-controls" data-ssv2-scope="results-ssv2-table" role="group" aria-label="SSV2 scenario filter">
+        <span class="video-controls-label">Scenario:</span>
+        <button class="video-filter ssv2-scenario-filter is-active" type="button" data-ssv2-scenario="bending" aria-pressed="true">Bending</button>
+        <button class="video-filter ssv2-scenario-filter" type="button" data-ssv2-scenario="pouring" aria-pressed="false">Pouring</button>
+        <button class="video-filter ssv2-scenario-filter" type="button" data-ssv2-scenario="all" aria-pressed="false">All scenarios</button>
+      </div>
+      <div class="video-controls" data-ssv2-scope="results-ssv2-table" role="group" aria-label="SSV2 sample filter">
+        <span class="video-controls-label">Sample:</span>
+        <button class="video-filter video-filter-thumb ssv2-sample-filter is-active" type="button" data-ssv2-sample="sample_1" aria-pressed="true" aria-label="Show sample 1">
+          <img src="./static/videos/ssv2/sample_1/f_video.gif" alt="SSV2 sample 1">
+        </button>
+        <button class="video-filter video-filter-thumb ssv2-sample-filter" type="button" data-ssv2-sample="sample_2" aria-pressed="false" aria-label="Show sample 2">
+          <img src="./static/videos/ssv2/sample_2/f_video.gif" alt="SSV2 sample 2">
+        </button>
+        <button class="video-filter video-filter-thumb ssv2-sample-filter" type="button" data-ssv2-sample="sample_3" aria-pressed="false" aria-label="Show sample 3">
+          <img src="./static/videos/ssv2/sample_3/f_video.gif" alt="SSV2 sample 3">
+        </button>
+        <button class="video-filter video-filter-thumb ssv2-sample-filter" type="button" data-ssv2-sample="sample_4" aria-pressed="false" aria-label="Show sample 4">
+          <img src="./static/videos/ssv2/sample_4/f_video.gif" alt="SSV2 sample 4">
+        </button>
+        <button class="video-filter ssv2-sample-filter" type="button" data-ssv2-sample="all" aria-pressed="false">All</button>
+      </div>
+      <div class="video-controls video-motion-row" data-motion-scope="results-ssv2-table" aria-label="SSV2 motion control">
+        <span class="video-controls-help-inline">Tip: click any GIF to pause/play.</span>
+      </div>
       <div class="ssv2-table-wrap">
-        <table class="ssv2-table">
+        <table class="ssv2-table" id="results-ssv2-table" data-ssv2-filterable="true">
           <thead>
             <tr>
               <th>Original Video</th>
@@ -376,44 +877,44 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="ssv2-class-group-row">
-              <td><strong>Source class:</strong> Pouring something into something</td>
-              <td><strong>Target class:</strong> Pouring something into something until it overflows.</td>
-            </tr>
-            <tr>
-              <td>
-                <img src="./static/videos/ssv2/sample1/factual.gif" alt="SSV2 sample1 factual">
-              </td>
-              <td>
-                <img src="./static/videos/ssv2/sample1/counterfactual.gif" alt="SSV2 sample1 counterfactual">
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <img src="./static/videos/ssv2/sample2/factual.gif" alt="SSV2 sample2 factual">
-              </td>
-              <td>
-                <img src="./static/videos/ssv2/sample2/counterfactual.gif" alt="SSV2 sample2 counterfactual">
-              </td>
-            </tr>
-            <tr class="ssv2-class-group-row">
+            <tr class="ssv2-class-group-row" data-ssv2-heading="true" data-ssv2-scenario="bending">
               <td><strong>Source class:</strong> Bending something so that it deforms</td>
               <td><strong>Target class:</strong> Bending something until it breaks.</td>
             </tr>
-            <tr>
+            <tr data-ssv2-scenario="bending" data-ssv2-sample="sample_1">
               <td>
-                <img src="./static/videos/ssv2/sample3/factual.gif" alt="SSV2 sample3 factual">
+                <img src="./static/videos/ssv2/sample_1/f_video.gif" alt="SSV2 sample_1 factual">
               </td>
               <td>
-                <img src="./static/videos/ssv2/sample3/counterfactual.gif" alt="SSV2 sample3 counterfactual">
+                <img src="./static/videos/ssv2/sample_1/cf_video.gif" alt="SSV2 sample_1 counterfactual">
               </td>
             </tr>
-            <tr>
+            <tr data-ssv2-scenario="bending" data-ssv2-sample="sample_2">
               <td>
-                <img src="./static/videos/ssv2/sample4/factual.gif" alt="SSV2 sample4 factual">
+                <img src="./static/videos/ssv2/sample_2/f_video.gif" alt="SSV2 sample_2 factual">
               </td>
               <td>
-                <img src="./static/videos/ssv2/sample4/counterfactual.gif" alt="SSV2 sample4 counterfactual">
+                <img src="./static/videos/ssv2/sample_2/cf_video.gif" alt="SSV2 sample_2 counterfactual">
+              </td>
+            </tr>
+            <tr class="ssv2-class-group-row" data-ssv2-heading="true" data-ssv2-scenario="pouring">
+              <td><strong>Source class:</strong> Pouring something into something</td>
+              <td><strong>Target class:</strong> Pouring something into something until it overflows.</td>
+            </tr>
+            <tr data-ssv2-scenario="pouring" data-ssv2-sample="sample_3">
+              <td>
+                <img src="./static/videos/ssv2/sample_3/f_video.gif" alt="SSV2 sample_3 factual">
+              </td>
+              <td>
+                <img src="./static/videos/ssv2/sample_3/cf_video.gif" alt="SSV2 sample_3 counterfactual">
+              </td>
+            </tr>
+            <tr data-ssv2-scenario="pouring" data-ssv2-sample="sample_4">
+              <td>
+                <img src="./static/videos/ssv2/sample_4/f_video.gif" alt="SSV2 sample_4 factual">
+              </td>
+              <td>
+                <img src="./static/videos/ssv2/sample_4/cf_video.gif" alt="SSV2 sample_4 counterfactual">
               </td>
             </tr>
           </tbody>
@@ -425,115 +926,319 @@
 
 <section class="section section-surface" id="appendix">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Additional Qualitative Results</h2>
+    <h2 class="title is-3 has-text-centered">LD-ViCE-RA: Results on Refinement of Denoising Artifacts</h2>
     <div class="content has-text-justified mb-4">
       <p>
-        Additional qualitative counterfactual examples on FERV39k,
-        showing factual videos and class-targeted generations to further
-        illustrate semantically meaningful expression changes, temporal
-        coherence, and class-consistent facial dynamics produced by
-        LD-ViCE.
+        Qualitative counterfactual examples generated by LD-ViCE and its
+        LD-ViCE-RA variant. Each view shows factual frames, guidance-free
+        denoised reconstructions, and difference maps that separate diffusion-induced
+        changes from classifier-guided edits. The RA refinement suppresses
+        high-frequency denoising artifacts, producing smoother and cleaner
+        counterfactual sequences while preserving salient target-model-driven changes.
       </p>
     </div>
-    <div class="overview-videos appendix-videos">
-      <div class="overview-video-row overview-video-header overview-video-header-top">
-        <div class="ov-cell ov-group-original">Original Video</div>
-        <div class="ov-cell ov-group-ce">Counterfactual Videos</div>
+    <p class="results-instruction">Click a dataset card to view LD-ViCE vs LD-ViCE-RA qualitative comparisons.</p>
+    <div class="columns is-multiline is-variable is-4 mt-4">
+      <div class="column is-4">
+        <a class="dataset-mini-link" href="#appendix-ferv39k">
+          <div class="dataset-mini">
+            <h3>FERV39k</h3>
+            <p>Counterfactual facial-expression sequences generated by LD-ViCE and LD-ViCE-RA. RA removes diffusion artifacts while preserving class-relevant edits around eyes, eyebrows, and mouth.</p>
+            <span class="button is-light is-small dataset-cta">View Results</span>
+          </div>
+        </a>
       </div>
-      <div class="overview-video-row overview-video-header">
-        <div class="ov-cell">Angry</div>
-        <div class="ov-cell class-disgust">Disgust</div>
-        <div class="ov-cell class-fear">Fear</div>
-        <div class="ov-cell class-happy">Happy</div>
-        <div class="ov-cell class-neutral">Neutral</div>
-        <div class="ov-cell class-sad">Sad</div>
-        <div class="ov-cell class-surprise">Surprise</div>
+      <div class="column is-4">
+        <a class="dataset-mini-link" href="#appendix-echonet">
+          <div class="dataset-mini">
+            <h3>EchoNet-Dynamics</h3>
+            <p>Cardiac ultrasound counterfactual sequences comparing LD-ViCE with its RA refinement variant. RA suppresses spurious high-frequency edits and keeps clinically meaningful, regression-guided changes.</p>
+            <span class="button is-light is-small dataset-cta">View Results</span>
+          </div>
+        </a>
       </div>
-      <div class="overview-video-row">
-        <div class="ov-cell"><img src="./static/videos/ferv39k/sample5/factual_Angry.gif" alt="sample5 factual angry"></div>
-        <div class="ov-cell"><img src="./static/videos/ferv39k/sample5/counerfactual_Disgust.gif" alt="sample5 counterfactual disgust"></div>
-        <div class="ov-cell"><img src="./static/videos/ferv39k/sample5/counerfactual_Fear.gif" alt="sample5 counterfactual fear"></div>
-        <div class="ov-cell"><img src="./static/videos/ferv39k/sample5/counerfactual_Happy.gif" alt="sample5 counterfactual happy"></div>
-        <div class="ov-cell"><img src="./static/videos/ferv39k/sample5/counerfactual_Neutral.gif" alt="sample5 counterfactual neutral"></div>
-        <div class="ov-cell"><img src="./static/videos/ferv39k/sample5/counerfactual_Sad.gif" alt="sample5 counterfactual sad"></div>
-        <div class="ov-cell"><img src="./static/videos/ferv39k/sample5/counerfactual_Surprise.gif" alt="sample5 counterfactual surprise"></div>
+      <div class="column is-4">
+        <a class="dataset-mini-link" href="#appendix-ssv2">
+          <div class="dataset-mini">
+            <h3>Something-Something V2 (SSv2)</h3>
+            <p>Action-level counterfactuals for bending and pouring transformations. RA improves spatial stability and reduces denoising noise, while semantic change strength remains scenario dependent.</p>
+            <span class="button is-light is-small dataset-cta">View Results</span>
+          </div>
+        </a>
       </div>
-
-      <div class="overview-video-row overview-video-header">
-        <div class="ov-cell">Surprise</div>
-        <div class="ov-cell class-angry">Angry</div>
-        <div class="ov-cell class-disgust">Disgust</div>
-        <div class="ov-cell class-fear">Fear</div>
-        <div class="ov-cell class-happy">Happy</div>
-        <div class="ov-cell class-neutral">Neutral</div>
-        <div class="ov-cell class-sad">Sad</div>
-      </div>
-      <div class="overview-video-row">
-        <div class="ov-cell"><img src="./static/videos/ferv39k/sample6/factual_Surprise.gif" alt="sample6 factual surprise"></div>
-        <div class="ov-cell"><img src="./static/videos/ferv39k/sample6/counerfactual_Angry.gif" alt="sample6 counterfactual angry"></div>
-        <div class="ov-cell"><img src="./static/videos/ferv39k/sample6/counerfactual_Disgust.gif" alt="sample6 counterfactual disgust"></div>
-        <div class="ov-cell"><img src="./static/videos/ferv39k/sample6/counerfactual_Fear.gif" alt="sample6 counterfactual fear"></div>
-        <div class="ov-cell"><img src="./static/videos/ferv39k/sample6/counerfactual_Happy.gif" alt="sample6 counterfactual happy"></div>
-        <div class="ov-cell"><img src="./static/videos/ferv39k/sample6/counerfactual_Neutral.gif" alt="sample6 counterfactual neutral"></div>
-        <div class="ov-cell"><img src="./static/videos/ferv39k/sample6/counerfactual_Sad.gif" alt="sample6 counterfactual sad"></div>
-      </div>
-
-      <div class="overview-video-row overview-video-header">
-        <div class="ov-cell">Sad</div>
-        <div class="ov-cell class-angry">Angry</div>
-        <div class="ov-cell class-disgust">Disgust</div>
-        <div class="ov-cell class-fear">Fear</div>
-        <div class="ov-cell class-happy">Happy</div>
-        <div class="ov-cell class-neutral">Neutral</div>
-        <div class="ov-cell class-surprise">Surprise</div>
-      </div>
-      <div class="overview-video-row">
-        <div class="ov-cell"><img src="./static/videos/ferv39k/sample7/factual_Sad.gif" alt="sample7 factual sad"></div>
-        <div class="ov-cell"><img src="./static/videos/ferv39k/sample7/counerfactual_Angry.gif" alt="sample7 counterfactual angry"></div>
-        <div class="ov-cell"><img src="./static/videos/ferv39k/sample7/counerfactual_Disgust.gif" alt="sample7 counterfactual disgust"></div>
-        <div class="ov-cell"><img src="./static/videos/ferv39k/sample7/counerfactual_Fear.gif" alt="sample7 counterfactual fear"></div>
-        <div class="ov-cell"><img src="./static/videos/ferv39k/sample7/counerfactual_Happy.gif" alt="sample7 counterfactual happy"></div>
-        <div class="ov-cell"><img src="./static/videos/ferv39k/sample7/counerfactual_Neutral.gif" alt="sample7 counterfactual neutral"></div>
-        <div class="ov-cell"><img src="./static/videos/ferv39k/sample7/counerfactual_Surprise.gif" alt="sample7 counterfactual surprise"></div>
-      </div>
-
-      <div class="overview-video-row overview-video-header">
-        <div class="ov-cell">Fear</div>
-        <div class="ov-cell class-angry">Angry</div>
-        <div class="ov-cell class-disgust">Disgust</div>
-        <div class="ov-cell class-happy">Happy</div>
-        <div class="ov-cell class-neutral">Neutral</div>
-        <div class="ov-cell class-sad">Sad</div>
-        <div class="ov-cell class-surprise">Surprise</div>
-      </div>
-      <div class="overview-video-row">
-        <div class="ov-cell"><img src="./static/videos/ferv39k/sample8/factual_Fear.gif" alt="sample8 factual fear"></div>
-        <div class="ov-cell"><img src="./static/videos/ferv39k/sample8/counerfactual_Angry.gif" alt="sample8 counterfactual angry"></div>
-        <div class="ov-cell"><img src="./static/videos/ferv39k/sample8/counerfactual_Disgust.gif" alt="sample8 counterfactual disgust"></div>
-        <div class="ov-cell"><img src="./static/videos/ferv39k/sample8/counerfactual_Happy.gif" alt="sample8 counterfactual happy"></div>
-        <div class="ov-cell"><img src="./static/videos/ferv39k/sample8/counerfactual_Neutral.gif" alt="sample8 counterfactual neutral"></div>
-        <div class="ov-cell"><img src="./static/videos/ferv39k/sample8/counerfactual_Sad.gif" alt="sample8 counterfactual sad"></div>
-        <div class="ov-cell"><img src="./static/videos/ferv39k/sample8/counerfactual_Surprise.gif" alt="sample8 counterfactual surprise"></div>
-      </div>
-
-      <div class="overview-video-row overview-video-header">
-        <div class="ov-cell">Sad</div>
-        <div class="ov-cell class-angry">Angry</div>
-        <div class="ov-cell class-disgust">Disgust</div>
-        <div class="ov-cell class-fear">Fear</div>
-        <div class="ov-cell class-happy">Happy</div>
-        <div class="ov-cell class-neutral">Neutral</div>
-        <div class="ov-cell class-surprise">Surprise</div>
-      </div>
-      <div class="overview-video-row">
-        <div class="ov-cell"><img src="./static/videos/ferv39k/sample9/factual_Sad.gif" alt="sample9 factual sad"></div>
-        <div class="ov-cell"><img src="./static/videos/ferv39k/sample9/counerfactual_Angry.gif" alt="sample9 counterfactual angry"></div>
-        <div class="ov-cell"><img src="./static/videos/ferv39k/sample9/counerfactual_Disgust.gif" alt="sample9 counterfactual disgust"></div>
-        <div class="ov-cell"><img src="./static/videos/ferv39k/sample9/counerfactual_Fear.gif" alt="sample9 counterfactual fear"></div>
-        <div class="ov-cell"><img src="./static/videos/ferv39k/sample9/counerfactual_Happy.gif" alt="sample9 counterfactual happy"></div>
-        <div class="ov-cell"><img src="./static/videos/ferv39k/sample9/counerfactual_Neutral.gif" alt="sample9 counterfactual neutral"></div>
-        <div class="ov-cell"><img src="./static/videos/ferv39k/sample9/counerfactual_Surprise.gif" alt="sample9 counterfactual surprise"></div>
-      </div>
+    </div>
+    <div class="dataset-block dataset-block-ferv39k appendix-dataset-block" id="appendix-ferv39k" data-appendix-dataset-panel="ferv39k">
+    <a class="dataset-close" href="#appendix">Close results</a>
+    <div class="video-controls" data-ferv-add-scope="appendix-ferv-rows" role="group" aria-label="FERV39k additional sample filter">
+      <span class="video-controls-label">Subject:</span>
+      <button class="video-filter video-filter-thumb ferv-add-sample-filter is-active" type="button" data-ferv-add-sample="sample_4" aria-pressed="true" aria-label="Show sample 4">
+        <img src="./static/videos/ferv39k/sample_4/f_video.gif" alt="FERV39k additional sample 4">
+      </button>
+      <button class="video-filter video-filter-thumb ferv-add-sample-filter" type="button" data-ferv-add-sample="sample_5" aria-pressed="false" aria-label="Show sample 5">
+        <img src="./static/videos/ferv39k/sample_5/f_video.gif" alt="FERV39k additional sample 5">
+      </button>
+      <button class="video-filter video-filter-thumb ferv-add-sample-filter" type="button" data-ferv-add-sample="sample_6" aria-pressed="false" aria-label="Show sample 6">
+        <img src="./static/videos/ferv39k/sample_6/f_video.gif" alt="FERV39k additional sample 6">
+      </button>
+      <button class="video-filter ferv-add-sample-filter" type="button" data-ferv-add-sample="all" aria-pressed="false">All</button>
+    </div>
+    <div class="video-controls" data-ferv-add-scope="appendix-ferv-rows" role="group" aria-label="FERV39k additional view filter">
+      <span class="video-controls-label">View:</span>
+      <button class="video-filter ferv-add-view-filter is-active" type="button" data-ferv-add-view="cf" aria-pressed="true">Counterfactual Video</button>
+      <button class="video-filter ferv-add-view-filter" type="button" data-ferv-add-view="mcf" aria-pressed="false">Masked Counterfactual Video</button>
+      <button class="video-filter ferv-add-view-filter" type="button" data-ferv-add-view="all" aria-pressed="false">All videos</button>
+    </div>
+    <div class="video-controls video-motion-row" data-motion-scope="appendix-ferv-rows" aria-label="FERV39k additional motion control">
+      <span class="video-controls-help-inline">Tip: click any GIF to pause/play.</span>
+    </div>
+    <div class="echonet-table-wrap">
+      <table class="echonet-table" id="appendix-ferv-rows" data-ferv-add-filterable="true">
+        <thead>
+          <tr>
+            <th data-ferv-add-col="original">Original Video</th>
+            <th data-ferv-add-col="dn">Denoised Video</th>
+            <th data-ferv-add-col="dndiff">Difference Map</th>
+            <th data-ferv-add-col="cf">Counterfactual Video</th>
+            <th data-ferv-add-col="cfdiff">Difference Map</th>
+            <th data-ferv-add-col="mcf">Masked Counterfactual Video</th>
+            <th data-ferv-add-col="mcfdiff">Difference Map</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-ferv-add-row="sample_4">
+            <td data-ferv-add-col="original"><img src="./static/videos/ferv39k/sample_4/f_video.gif" alt="FERV39k sample4 factual"></td>
+            <td data-ferv-add-col="dn"><img src="./static/videos/ferv39k/sample_4/dn_video.gif" alt="FERV39k sample4 denoised"></td>
+            <td data-ferv-add-col="dndiff"><img src="./static/videos/ferv39k/sample_4/f_dn_diff_video.gif" alt="FERV39k sample4 f-dn diff"></td>
+            <td data-ferv-add-col="cf"><img src="./static/videos/ferv39k/sample_4/cf_video.gif" alt="FERV39k sample4 counterfactual"></td>
+            <td data-ferv-add-col="cfdiff"><img src="./static/videos/ferv39k/sample_4/f_cf_diff_video.gif" alt="FERV39k sample4 f-cf diff"></td>
+            <td data-ferv-add-col="mcf"><img src="./static/videos/ferv39k/sample_4/mcf_video.gif" alt="FERV39k sample4 masked counterfactual"></td>
+            <td data-ferv-add-col="mcfdiff"><img src="./static/videos/ferv39k/sample_4/f_mcf_diff_video.gif" alt="FERV39k sample4 f-mcf diff"></td>
+          </tr>
+          <tr data-ferv-add-row="sample_5">
+            <td data-ferv-add-col="original"><img src="./static/videos/ferv39k/sample_5/f_video.gif" alt="FERV39k sample5 factual"></td>
+            <td data-ferv-add-col="dn"><img src="./static/videos/ferv39k/sample_5/dn_video.gif" alt="FERV39k sample5 denoised"></td>
+            <td data-ferv-add-col="dndiff"><img src="./static/videos/ferv39k/sample_5/f_dn_diff_video.gif" alt="FERV39k sample5 f-dn diff"></td>
+            <td data-ferv-add-col="cf"><img src="./static/videos/ferv39k/sample_5/cf_video.gif" alt="FERV39k sample5 counterfactual"></td>
+            <td data-ferv-add-col="cfdiff"><img src="./static/videos/ferv39k/sample_5/f_cf_diff_video.gif" alt="FERV39k sample5 f-cf diff"></td>
+            <td data-ferv-add-col="mcf"><img src="./static/videos/ferv39k/sample_5/mcf_video.gif" alt="FERV39k sample5 masked counterfactual"></td>
+            <td data-ferv-add-col="mcfdiff"><img src="./static/videos/ferv39k/sample_5/f_mcf_diff_video.gif" alt="FERV39k sample5 f-mcf diff"></td>
+          </tr>
+          <tr data-ferv-add-row="sample_6">
+            <td data-ferv-add-col="original"><img src="./static/videos/ferv39k/sample_6/f_video.gif" alt="FERV39k sample6 factual"></td>
+            <td data-ferv-add-col="dn"><img src="./static/videos/ferv39k/sample_6/dn_video.gif" alt="FERV39k sample6 denoised"></td>
+            <td data-ferv-add-col="dndiff"><img src="./static/videos/ferv39k/sample_6/f_dn_diff_video.gif" alt="FERV39k sample6 f-dn diff"></td>
+            <td data-ferv-add-col="cf"><img src="./static/videos/ferv39k/sample_6/cf_video.gif" alt="FERV39k sample6 counterfactual"></td>
+            <td data-ferv-add-col="cfdiff"><img src="./static/videos/ferv39k/sample_6/f_cf_diff_video.gif" alt="FERV39k sample6 f-cf diff"></td>
+            <td data-ferv-add-col="mcf"><img src="./static/videos/ferv39k/sample_6/mcf_video.gif" alt="FERV39k sample6 masked counterfactual"></td>
+            <td data-ferv-add-col="mcfdiff"><img src="./static/videos/ferv39k/sample_6/f_mcf_diff_video.gif" alt="FERV39k sample6 f-mcf diff"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <figure class="paper-figure compact appendix-ferv-figure">
+      <figcaption id="appendix-ferv-qual-caption">
+        Qualitative counterfactual results on the FERV39K dataset. Factual and denoised frames are shown with difference maps (Denoised-Diff. Map) visualizing diffusion-induced changes. Classifier-guided counterfactuals generated by LD-ViCE introduce facial adjustments, such as <strong><em>cheek lifting and softening of the mouth curvature</em></strong> aligned with the <strong><em>Happy</em></strong> emotion, highlighted in the difference maps (Diff. Map). The RA variant suppresses high-frequency artifacts and yields cleaner counterfactuals, with difference maps (RA-Diff. Map) showing only the salient, class-relevant modifications from <strong><em>Neutral</em></strong> to <strong><em>Happy</em></strong>.
+      </figcaption>
+      <img id="appendix-ferv-qual-figure" src="./static/videos/ferv39k/sample_4/video_12_cmp.jpeg" alt="FERV39k additional sample qualitative figure">
+    </figure>
+    </div>
+    <div class="dataset-block dataset-block-echonet appendix-dataset-block" id="appendix-echonet" data-appendix-dataset-panel="echonet">
+    <a class="dataset-close" href="#appendix">Close results</a>
+    <div class="video-controls" data-echonet-add-scope="appendix-echonet-rows" role="group" aria-label="EchoNet additional sample filter">
+      <span class="video-controls-label">Sample:</span>
+      <button class="video-filter video-filter-thumb echonet-add-sample-filter is-active" type="button" data-echonet-add-sample="sample_4" aria-pressed="true" aria-label="Show sample 4">
+        <img src="./static/videos/echonet/sample_4/f_video.gif" alt="EchoNet additional sample 4">
+      </button>
+      <button class="video-filter video-filter-thumb echonet-add-sample-filter" type="button" data-echonet-add-sample="sample_5" aria-pressed="false" aria-label="Show sample 5">
+        <img src="./static/videos/echonet/sample_5/f_video.gif" alt="EchoNet additional sample 5">
+      </button>
+      <button class="video-filter echonet-add-sample-filter" type="button" data-echonet-add-sample="all" aria-pressed="false">All</button>
+    </div>
+    <div class="video-controls" data-echonet-add-scope="appendix-echonet-rows" role="group" aria-label="EchoNet additional view filter">
+      <span class="video-controls-label">View:</span>
+      <button class="video-filter echonet-add-view-filter is-active" type="button" data-echonet-add-view="cf" aria-pressed="true">Counterfactual Video</button>
+      <button class="video-filter echonet-add-view-filter" type="button" data-echonet-add-view="mcf" aria-pressed="false">Masked Counterfactual Video</button>
+      <button class="video-filter echonet-add-view-filter" type="button" data-echonet-add-view="all" aria-pressed="false">All videos</button>
+    </div>
+    <div class="video-controls video-motion-row" data-motion-scope="appendix-echonet-rows" aria-label="EchoNet additional motion control">
+      <span class="video-controls-help-inline">Tip: click any GIF to pause/play.</span>
+    </div>
+    <div class="echonet-table-wrap">
+      <table class="echonet-table" id="appendix-echonet-rows" data-echonet-add-filterable="true">
+        <thead>
+          <tr>
+            <th data-echonet-add-col="original">Original Video</th>
+            <th data-echonet-add-col="dn">Denoised Video</th>
+            <th data-echonet-add-col="dndiff">Difference Map</th>
+            <th data-echonet-add-col="cf">Counterfactual Video</th>
+            <th data-echonet-add-col="cfdiff">Difference Map</th>
+            <th data-echonet-add-col="mcf">Masked Counterfactual Video</th>
+            <th data-echonet-add-col="mcfdiff">Difference Map</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-echonet-add-row="sample_4">
+            <td data-echonet-add-col="original">
+              <div class="echonet-lvef-note">Pred LVEF: 63.6</div>
+              <img src="./static/videos/echonet/sample_4/f_video.gif" alt="Echo sample4 factual">
+            </td>
+            <td data-echonet-add-col="dn">
+              <div class="echonet-lvef-note is-placeholder" aria-hidden="true"></div>
+              <img src="./static/videos/echonet/sample_4/dn_video.gif" alt="Echo sample4 denoised">
+            </td>
+            <td data-echonet-add-col="dndiff">
+              <div class="echonet-lvef-note is-placeholder" aria-hidden="true"></div>
+              <img src="./static/videos/echonet/sample_4/f_dn_diff_video.gif" alt="Echo sample4 f-dn diff">
+            </td>
+            <td data-echonet-add-col="cf">
+              <div class="echonet-lvef-note">Target LVEF : 35.0<br>Pred LVEF: 34.9</div>
+              <img src="./static/videos/echonet/sample_4/cf_video.gif" alt="Echo sample4 counterfactual">
+            </td>
+            <td data-echonet-add-col="cfdiff">
+              <div class="echonet-lvef-note is-placeholder" aria-hidden="true"></div>
+              <img src="./static/videos/echonet/sample_4/f_cf_diff_video.gif" alt="Echo sample4 f-cf diff">
+            </td>
+            <td data-echonet-add-col="mcf">
+              <div class="echonet-lvef-note">Target LVEF : 35.0<br>Pred LVEF: 35.5</div>
+              <img src="./static/videos/echonet/sample_4/mcf_video.gif" alt="Echo sample4 masked counterfactual">
+            </td>
+            <td data-echonet-add-col="mcfdiff">
+              <div class="echonet-lvef-note is-placeholder" aria-hidden="true"></div>
+              <img src="./static/videos/echonet/sample_4/f_mcf_diff_video.gif" alt="Echo sample4 f-mcf diff">
+            </td>
+          </tr>
+          <tr data-echonet-add-row="sample_5">
+            <td data-echonet-add-col="original">
+              <div class="echonet-lvef-note">Pred LVEF: 64.2</div>
+              <img src="./static/videos/echonet/sample_5/f_video.gif" alt="Echo sample5 factual">
+            </td>
+            <td data-echonet-add-col="dn">
+              <div class="echonet-lvef-note is-placeholder" aria-hidden="true"></div>
+              <img src="./static/videos/echonet/sample_5/dn_video.gif" alt="Echo sample5 denoised">
+            </td>
+            <td data-echonet-add-col="dndiff">
+              <div class="echonet-lvef-note is-placeholder" aria-hidden="true"></div>
+              <img src="./static/videos/echonet/sample_5/f_dn_diff_video.gif" alt="Echo sample5 f-dn diff">
+            </td>
+            <td data-echonet-add-col="cf">
+              <div class="echonet-lvef-note">Target LVEF : 35.0<br>Pred LVEF: 34.9</div>
+              <img src="./static/videos/echonet/sample_5/cf_video.gif" alt="Echo sample5 counterfactual">
+            </td>
+            <td data-echonet-add-col="cfdiff">
+              <div class="echonet-lvef-note is-placeholder" aria-hidden="true"></div>
+              <img src="./static/videos/echonet/sample_5/f_cf_diff_video.gif" alt="Echo sample5 f-cf diff">
+            </td>
+            <td data-echonet-add-col="mcf">
+              <div class="echonet-lvef-note">Target LVEF : 35.0<br>Pred LVEF: 33.6</div>
+              <img src="./static/videos/echonet/sample_5/mcf_video.gif" alt="Echo sample5 masked counterfactual">
+            </td>
+            <td data-echonet-add-col="mcfdiff">
+              <div class="echonet-lvef-note is-placeholder" aria-hidden="true"></div>
+              <img src="./static/videos/echonet/sample_5/f_mcf_diff_video.gif" alt="Echo sample5 f-mcf diff">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <figure class="paper-figure compact appendix-echonet-figure">
+      <figcaption>
+        Qualitative counterfactual results on the EchoNet-Dynamic dataset. Eight frames of a video are displayed. Factual frames and their guidance-free denoised versions are shown with difference maps (Denoised-Diff. Map) visualizing diffusion-induced changes. Classifier-guided counterfactuals generated by LD-ViCE introduce targeted adjustments, highlighted in the difference maps (Diff. Map). The RA variant suppresses high-frequency artifacts, yielding cleaner counterfactuals, with difference maps (RA-Diff. Map) showing only the salient, causal changes.
+      </figcaption>
+      <img id="appendix-echonet-qual-figure" src="./static/videos/echonet/sample_4/echo_video_0_cmp.jpeg" alt="EchoNet additional sample qualitative figure">
+    </figure>
+    </div>
+    <div class="dataset-block dataset-block-ssv2 appendix-dataset-block" id="appendix-ssv2" data-appendix-dataset-panel="ssv2">
+    <a class="dataset-close" href="#appendix">Close results</a>
+    <div class="video-controls" data-ssv2-add-scope="appendix-ssv2-rows" role="group" aria-label="SSV2 additional scenario filter">
+      <span class="video-controls-label">Scenario:</span>
+      <button class="video-filter ssv2-add-scenario-filter is-active" type="button" data-ssv2-add-scenario="bending" aria-pressed="true">Bending</button>
+      <button class="video-filter ssv2-add-scenario-filter" type="button" data-ssv2-add-scenario="pouring" aria-pressed="false">Pouring</button>
+      <button class="video-filter ssv2-add-scenario-filter" type="button" data-ssv2-add-scenario="all" aria-pressed="false">All scenarios</button>
+    </div>
+    <div class="video-controls" data-ssv2-add-scope="appendix-ssv2-rows" role="group" aria-label="SSV2 additional sample filter">
+      <span class="video-controls-label">Sample:</span>
+      <button class="video-filter video-filter-thumb ssv2-add-sample-filter is-active" type="button" data-ssv2-add-sample="sample_1" aria-pressed="true" aria-label="Show sample 1">
+        <img src="./static/videos/ssv2/sample_1/f_video.gif" alt="SSV2 additional sample 1">
+      </button>
+      <button class="video-filter video-filter-thumb ssv2-add-sample-filter" type="button" data-ssv2-add-sample="sample_2" aria-pressed="false" aria-label="Show sample 2">
+        <img src="./static/videos/ssv2/sample_2/f_video.gif" alt="SSV2 additional sample 2">
+      </button>
+      <button class="video-filter video-filter-thumb ssv2-add-sample-filter" type="button" data-ssv2-add-sample="sample_3" aria-pressed="false" aria-label="Show sample 3">
+        <img src="./static/videos/ssv2/sample_3/f_video.gif" alt="SSV2 additional sample 3">
+      </button>
+      <button class="video-filter video-filter-thumb ssv2-add-sample-filter" type="button" data-ssv2-add-sample="sample_4" aria-pressed="false" aria-label="Show sample 4">
+        <img src="./static/videos/ssv2/sample_4/f_video.gif" alt="SSV2 additional sample 4">
+      </button>
+      <button class="video-filter ssv2-add-sample-filter" type="button" data-ssv2-add-sample="all" aria-pressed="false">All</button>
+    </div>
+    <div class="video-controls" data-ssv2-add-scope="appendix-ssv2-rows" role="group" aria-label="SSV2 additional view filter">
+      <span class="video-controls-label">View:</span>
+      <button class="video-filter ssv2-add-view-filter is-active" type="button" data-ssv2-add-view="cf" aria-pressed="true">Counterfactual Video</button>
+      <button class="video-filter ssv2-add-view-filter" type="button" data-ssv2-add-view="mcf" aria-pressed="false">Masked Counterfactual Video</button>
+      <button class="video-filter ssv2-add-view-filter" type="button" data-ssv2-add-view="all" aria-pressed="false">All videos</button>
+    </div>
+    <div class="video-controls video-motion-row" data-motion-scope="appendix-ssv2-rows" aria-label="SSV2 additional motion control">
+      <span class="video-controls-help-inline">Tip: click any GIF to pause/play.</span>
+    </div>
+    <div class="echonet-table-wrap">
+      <table class="echonet-table" id="appendix-ssv2-rows" data-ssv2-add-filterable="true">
+        <thead>
+          <tr>
+            <th data-ssv2-add-col="original">Original Video</th>
+            <th data-ssv2-add-col="dn">Denoised Video</th>
+            <th data-ssv2-add-col="dndiff">Difference Map</th>
+            <th data-ssv2-add-col="cf">Counterfactual Video</th>
+            <th data-ssv2-add-col="cfdiff">Difference Map</th>
+            <th data-ssv2-add-col="mcf">Masked Counterfactual Video</th>
+            <th data-ssv2-add-col="mcfdiff">Difference Map</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-ssv2-add-row="sample_1" data-ssv2-add-scenario="bending">
+            <td data-ssv2-add-col="original"><img src="./static/videos/ssv2/sample_1/f_video.gif" alt="SSV2 sample_1 factual"></td>
+            <td data-ssv2-add-col="dn"><img src="./static/videos/ssv2/sample_1/dn_video.gif" alt="SSV2 sample_1 denoised"></td>
+            <td data-ssv2-add-col="dndiff"><img src="./static/videos/ssv2/sample_1/f_dn_diff_video.gif" alt="SSV2 sample_1 f-dn diff"></td>
+            <td data-ssv2-add-col="cf"><img src="./static/videos/ssv2/sample_1/cf_video.gif" alt="SSV2 sample_1 counterfactual"></td>
+            <td data-ssv2-add-col="cfdiff"><img src="./static/videos/ssv2/sample_1/f_cf_diff_video.gif" alt="SSV2 sample_1 f-cf diff"></td>
+            <td data-ssv2-add-col="mcf"><img src="./static/videos/ssv2/sample_1/mcf_video.gif" alt="SSV2 sample_1 masked counterfactual"></td>
+            <td data-ssv2-add-col="mcfdiff"><img src="./static/videos/ssv2/sample_1/f_mcf_diff_video.gif" alt="SSV2 sample_1 f-mcf diff"></td>
+          </tr>
+          <tr data-ssv2-add-row="sample_2" data-ssv2-add-scenario="bending">
+            <td data-ssv2-add-col="original"><img src="./static/videos/ssv2/sample_2/f_video.gif" alt="SSV2 sample_2 factual"></td>
+            <td data-ssv2-add-col="dn"><img src="./static/videos/ssv2/sample_2/dn_video.gif" alt="SSV2 sample_2 denoised"></td>
+            <td data-ssv2-add-col="dndiff"><img src="./static/videos/ssv2/sample_2/f_dn_diff_video.gif" alt="SSV2 sample_2 f-dn diff"></td>
+            <td data-ssv2-add-col="cf"><img src="./static/videos/ssv2/sample_2/cf_video.gif" alt="SSV2 sample_2 counterfactual"></td>
+            <td data-ssv2-add-col="cfdiff"><img src="./static/videos/ssv2/sample_2/f_cf_diff_video.gif" alt="SSV2 sample_2 f-cf diff"></td>
+            <td data-ssv2-add-col="mcf"><img src="./static/videos/ssv2/sample_2/mcf_video.gif" alt="SSV2 sample_2 masked counterfactual"></td>
+            <td data-ssv2-add-col="mcfdiff"><img src="./static/videos/ssv2/sample_2/f_mcf_diff_video.gif" alt="SSV2 sample_2 f-mcf diff"></td>
+          </tr>
+          <tr data-ssv2-add-row="sample_3" data-ssv2-add-scenario="pouring">
+            <td data-ssv2-add-col="original"><img src="./static/videos/ssv2/sample_3/f_video.gif" alt="SSV2 sample_3 factual"></td>
+            <td data-ssv2-add-col="dn"><img src="./static/videos/ssv2/sample_3/dn_video.gif" alt="SSV2 sample_3 denoised"></td>
+            <td data-ssv2-add-col="dndiff"><img src="./static/videos/ssv2/sample_3/f_dn_diff_video.gif" alt="SSV2 sample_3 f-dn diff"></td>
+            <td data-ssv2-add-col="cf"><img src="./static/videos/ssv2/sample_3/cf_video.gif" alt="SSV2 sample_3 counterfactual"></td>
+            <td data-ssv2-add-col="cfdiff"><img src="./static/videos/ssv2/sample_3/f_cf_diff_video.gif" alt="SSV2 sample_3 f-cf diff"></td>
+            <td data-ssv2-add-col="mcf"><img src="./static/videos/ssv2/sample_3/mcf_video.gif" alt="SSV2 sample_3 masked counterfactual"></td>
+            <td data-ssv2-add-col="mcfdiff"><img src="./static/videos/ssv2/sample_3/f_mcf_diff_video.gif" alt="SSV2 sample_3 f-mcf diff"></td>
+          </tr>
+          <tr data-ssv2-add-row="sample_4" data-ssv2-add-scenario="pouring">
+            <td data-ssv2-add-col="original"><img src="./static/videos/ssv2/sample_4/f_video.gif" alt="SSV2 sample_4 factual"></td>
+            <td data-ssv2-add-col="dn"><img src="./static/videos/ssv2/sample_4/dn_video.gif" alt="SSV2 sample_4 denoised"></td>
+            <td data-ssv2-add-col="dndiff"><img src="./static/videos/ssv2/sample_4/f_dn_diff_video.gif" alt="SSV2 sample_4 f-dn diff"></td>
+            <td data-ssv2-add-col="cf"><img src="./static/videos/ssv2/sample_4/cf_video.gif" alt="SSV2 sample_4 counterfactual"></td>
+            <td data-ssv2-add-col="cfdiff"><img src="./static/videos/ssv2/sample_4/f_cf_diff_video.gif" alt="SSV2 sample_4 f-cf diff"></td>
+            <td data-ssv2-add-col="mcf"><img src="./static/videos/ssv2/sample_4/mcf_video.gif" alt="SSV2 sample_4 masked counterfactual"></td>
+            <td data-ssv2-add-col="mcfdiff"><img src="./static/videos/ssv2/sample_4/f_mcf_diff_video.gif" alt="SSV2 sample_4 f-mcf diff"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <figure class="paper-figure compact appendix-ssv2-figure">
+      <figcaption id="appendix-ssv2-qual-caption">
+        Qualitative counterfactual results for transforming the predicted action from <strong><em>Bending something so that it deforms</em></strong> to <strong><em>Bending something until it breaks</em></strong> on the SSv2 dataset using LD-ViCE. Factual frames and denoised reconstructions (guidance-free) are shown alongside their denoised difference maps (Denoised-Diff. Map). LD-ViCE counterfactuals introduce classifier-driven changes in the interaction region, while the RA variant suppresses high-frequency diffusion artifacts. Changes are primarily applied to the expected interaction region, and in the final frames, localized brightening and deformation in the folding area represent a potential break in the object (highlighted in the red circle).
+      </figcaption>
+      <img id="appendix-ssv2-qual-figure" src="./static/videos/ssv2/sample_1/ssv2_video_730_cmp_u.jpg" alt="SSV2 additional sample qualitative figure">
+    </figure>
     </div>
   </div>
 </section>
@@ -564,7 +1269,7 @@
     <div class="content has-text-centered">
       <a class="icon-link" href="https://github.com/payal-varshney/ld-vice"><i class="fab fa-github"></i></a>
       <p>
-        This page is adapted from this <a href="https://github.com/nerfies/nerfies.github.io">implementation</a>.
+        Originally based on the <a href="https://github.com/nerfies/nerfies.github.io">Nerfies website template</a>, substantially modified for LD-ViCE.
       </p>
     </div>
   </div>
@@ -572,6 +1277,1421 @@
 
 <script>
   (function () {
+    const normalizeClassName = (value) => value.toLowerCase().replace(/[^a-z]/g, '');
+    const toFrameImage = (img) => {
+      const w = img.naturalWidth || img.width;
+      const h = img.naturalHeight || img.height;
+      if (!w || !h) return null;
+      const canvas = document.createElement('canvas');
+      canvas.width = w;
+      canvas.height = h;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return null;
+      ctx.drawImage(img, 0, 0, w, h);
+      return canvas.toDataURL('image/png');
+    };
+
+    const setImageMotion = (img, pause) => {
+      if (!img.dataset.originalSrc) {
+        img.dataset.originalSrc = img.getAttribute('src') || '';
+      }
+
+      if (pause) {
+        const frame = toFrameImage(img);
+        if (frame) {
+          img.setAttribute('src', frame);
+        }
+        img.dataset.motionPaused = 'true';
+        img.classList.add('is-motion-paused');
+        return;
+      }
+
+      if (img.dataset.originalSrc) {
+        img.setAttribute('src', img.dataset.originalSrc);
+      }
+      delete img.dataset.motionPaused;
+      img.classList.remove('is-motion-paused');
+    };
+
+    const setScopeMotion = (scope, pause) => {
+      const images = Array.from(scope.querySelectorAll('img'));
+      images.forEach((img) => {
+        setImageMotion(img, pause);
+      });
+    };
+
+    const parseSelectedClasses = (value) => {
+      if (!value || value === 'all') return ['all'];
+      return value.split(',').map(v => v.trim()).filter(Boolean);
+    };
+
+    const applyClassFilter = (scope, classSelection) => {
+      const rows = Array.from(scope.querySelectorAll('.overview-video-row'));
+      const selectedClasses = Array.isArray(classSelection)
+        ? classSelection
+        : parseSelectedClasses(classSelection);
+      const selectedSet = new Set(selectedClasses);
+      const showAll = selectedSet.has('all') || selectedSet.size === 0;
+
+      rows.forEach((row) => {
+        const cells = Array.from(row.children);
+        if (!cells.length) return;
+
+        if (showAll) {
+          cells.forEach((cell) => {
+            cell.hidden = false;
+            cell.style.display = '';
+          });
+          delete row.dataset.keepIndices;
+          return;
+        }
+
+        if (row.classList.contains('overview-video-header-top')) return;
+
+        const hideCounterfactualCells = (keepIndices) => {
+          for (let i = 1; i < cells.length; i += 1) {
+            const showCell = keepIndices.includes(i);
+            cells[i].hidden = !showCell;
+            cells[i].style.display = showCell ? '' : 'none';
+          }
+        };
+
+        if (row.classList.contains('overview-video-header')) {
+          const keepIndices = [];
+          for (let i = 1; i < cells.length; i += 1) {
+            const label = normalizeClassName(cells[i].textContent || '');
+            if (selectedSet.has(label)) {
+              keepIndices.push(i);
+            }
+          }
+          row.dataset.keepIndices = keepIndices.join(',');
+          if (!row.hasAttribute('data-group')) {
+            scope.dataset.globalKeepIndices = row.dataset.keepIndices;
+          }
+          hideCounterfactualCells(keepIndices);
+          return;
+        }
+
+        let keepIndices = [];
+        let headerRow = row.previousElementSibling;
+        while (
+          headerRow &&
+          (
+            !headerRow.classList.contains('overview-video-header') ||
+            headerRow.classList.contains('overview-video-header-top')
+          )
+        ) {
+          headerRow = headerRow.previousElementSibling;
+        }
+
+        if (headerRow && headerRow.dataset.keepIndices) {
+          keepIndices = headerRow.dataset.keepIndices
+            .split(',')
+            .map((v) => parseInt(v, 10))
+            .filter((v) => !Number.isNaN(v));
+        } else if (scope.dataset.globalKeepIndices) {
+          keepIndices = scope.dataset.globalKeepIndices
+            .split(',')
+            .map((v) => parseInt(v, 10))
+            .filter((v) => !Number.isNaN(v));
+        }
+
+        hideCounterfactualCells(keepIndices);
+      });
+
+      const globalHeader = scope.querySelector('.overview-video-row.overview-video-header:not(.overview-video-header-top):not([data-group])');
+      if (globalHeader && globalHeader.dataset.keepIndices) {
+        scope.dataset.globalKeepIndices = globalHeader.dataset.keepIndices;
+      } else {
+        delete scope.dataset.globalKeepIndices;
+      }
+    };
+
+    const initVideoFilters = () => {
+      const controlGroups = Array.from(document.querySelectorAll('.video-controls[data-scope]'));
+
+      controlGroups.forEach((controls) => {
+        const scopeId = controls.getAttribute('data-scope');
+        const scope = scopeId ? document.getElementById(scopeId) : null;
+        if (!scope) return;
+
+        const buttons = Array.from(controls.querySelectorAll('.video-filter[data-group]'));
+        const rows = Array.from(scope.querySelectorAll('.overview-video-row[data-group]'));
+        if (!buttons.length || !rows.length) return;
+
+        const applyFilter = (group) => {
+          const showDiffRows = scope.dataset.diffVisible === 'true';
+          rows.forEach((row) => {
+            const isDiffRow = row.classList.contains('overview-diff-row');
+            const inSelectedGroup = group === 'all' || row.getAttribute('data-group') === group;
+            const showRow = inSelectedGroup && (!isDiffRow || showDiffRows);
+            row.hidden = !showRow;
+            row.style.display = showRow ? '' : 'none';
+          });
+
+          buttons.forEach((button) => {
+            const active = button.getAttribute('data-group') === group;
+            button.classList.toggle('is-active', active);
+            button.setAttribute('aria-pressed', active ? 'true' : 'false');
+          });
+
+          applyClassFilter(scope, scope.dataset.classFilter || 'all');
+        };
+
+        buttons.forEach((button) => {
+          button.addEventListener('click', () => {
+            applyFilter(button.getAttribute('data-group') || 'all');
+          });
+        });
+
+        const initialButton = buttons.find((button) => button.classList.contains('is-active')) || buttons[0];
+        applyFilter(initialButton.getAttribute('data-group') || 'all');
+      });
+    };
+
+    initVideoFilters();
+
+    const initFervResultsFigure = () => {
+      const controls = document.querySelector('.video-controls[data-scope="results-ferv-overview-groups"]');
+      const figure = document.getElementById('results-ferv-qual-figure');
+      const caption = document.getElementById('results-ferv-qual-caption');
+      if (!controls || !figure || !caption) return;
+      const figureWrapper = figure.closest('figure');
+
+      const figureMap = {
+        sample_1: './static/videos/ferv39k/sample_1/ferv39k_sample1.jpg',
+        sample_7: './static/videos/ferv39k/sample_7/ferv39k_sample182.jpg',
+        sample_8: './static/videos/ferv39k/sample_8/ferv39k_sample370.jpg',
+        sample_9: './static/videos/ferv39k/sample_9/ferv39k_sample3.jpg',
+        sample_10: './static/videos/ferv39k/sample_10/ferv39k_sample47.jpg',
+        sample_11: './static/videos/ferv39k/sample_11/ferv39k_sample248.jpg',
+        sample_12: './static/videos/ferv39k/sample_12/ferv39k_sample723.jpg',
+        sample_13: './static/videos/ferv39k/sample_13/ferv39k_sample11.jpg',
+        sample_14: './static/videos/ferv39k/sample_14/ferv39k_sample82.jpg',
+        sample_15: './static/videos/ferv39k/sample_15/ferv39k_sample12.jpg',
+        sample_16: './static/videos/ferv39k/sample_16/ferv39k_sample83.jpg',
+        sample_17: './static/videos/ferv39k/sample_17/ferv39k_sample5.jpg',
+        sample_18: './static/videos/ferv39k/sample_18/ferv39k_sample63.jpg',
+        sample_19: './static/videos/ferv39k/sample_19/ferv39k_sample41.jpg'
+      };
+      const sourceClassMap = {
+        sample_1: 'Surprise',
+        sample_7: 'Angry',
+        sample_8: 'Angry',
+        sample_9: 'Disgust',
+        sample_10: 'Disgust',
+        sample_11: 'Fear',
+        sample_12: 'Fear',
+        sample_13: 'Happy',
+        sample_14: 'Happy',
+        sample_15: 'Neutral',
+        sample_16: 'Neutral',
+        sample_17: 'Sad',
+        sample_18: 'Sad',
+        sample_19: 'Surprise'
+      };
+
+      const setFigure = (sample) => {
+        const nextSample = figureMap[sample] ? sample : 'sample_1';
+        figure.setAttribute('src', figureMap[nextSample]);
+        figure.setAttribute('alt', `LD-ViCE counterfactual results on FERV39k ${nextSample}`);
+        const sourceClass = sourceClassMap[nextSample] || 'Surprise';
+        caption.innerHTML = `Qualitative counterfactual results generated by LD-ViCE on the FERV39k dataset, transforming the predicted class emotion <strong><em>${sourceClass} into each of the other emotion classes</em></strong>. The generated counterfactuals exhibit distinct and class-consistent facial dynamics corresponding to the desired emotional categories.`;
+      };
+
+      const buttons = Array.from(controls.querySelectorAll('.video-filter[data-group]'));
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const group = button.getAttribute('data-group') || 'sample_1';
+          if (group === 'all') {
+            figure.style.display = 'none';
+            caption.style.display = 'none';
+            if (figureWrapper) figureWrapper.style.display = 'none';
+            return;
+          }
+          if (figureWrapper) figureWrapper.style.display = '';
+          caption.style.display = '';
+          figure.style.display = '';
+          setFigure(group);
+        });
+      });
+
+      const initial = buttons.find((button) => button.classList.contains('is-active'));
+      const initialGroup = initial ? (initial.getAttribute('data-group') || 'sample_1') : 'sample_1';
+      if (initialGroup === 'all') {
+        figure.style.display = 'none';
+        caption.style.display = 'none';
+        if (figureWrapper) figureWrapper.style.display = 'none';
+        return;
+      }
+      if (figureWrapper) figureWrapper.style.display = '';
+      caption.style.display = '';
+      figure.style.display = '';
+      setFigure(initialGroup);
+    };
+
+    initFervResultsFigure();
+
+    const initFervResultsBorders = () => {
+      const scope = document.getElementById('results-ferv-overview-groups');
+      if (!scope) return;
+
+      const colorMap = {
+        angry: '#1e3a8a',
+        disgust: '#a21caf',
+        fear: '#7f1d1d',
+        happy: '#166534',
+        neutral: '#4b5563',
+        sad: '#8b6b00',
+        surprise: '#4c1d95'
+      };
+
+      const normalize = (value) => (value || '').toLowerCase().replace(/[^a-z]/g, '');
+      const sampleHeaders = Array.from(scope.querySelectorAll('.overview-video-row.overview-video-header[data-group]'));
+
+      sampleHeaders.forEach((header) => {
+        const labels = Array.from(header.querySelectorAll('.ov-cell')).map((cell) => normalize(cell.textContent));
+        const videoRow = header.nextElementSibling;
+        const diffRow = videoRow ? videoRow.nextElementSibling : null;
+        if (!videoRow || !diffRow) return;
+
+        const videoCells = Array.from(videoRow.querySelectorAll('.ov-cell'));
+        videoCells.forEach((cell, idx) => {
+          const img = cell.querySelector('img');
+          if (!img) return;
+          if (idx === 0) {
+            img.style.borderColor = '#000000';
+            return;
+          }
+          const label = labels[idx];
+          const color = colorMap[label];
+          if (color) {
+            img.style.borderColor = color;
+          }
+        });
+
+        const diffCells = Array.from(diffRow.querySelectorAll('.ov-cell'));
+        diffCells.forEach((cell, idx) => {
+          if (idx === 0) return;
+          const img = cell.querySelector('img');
+          if (!img) return;
+          const label = labels[idx];
+          const color = colorMap[label];
+          if (color) {
+            img.style.borderColor = color;
+          }
+        });
+      });
+    };
+
+    initFervResultsBorders();
+
+    const initOverviewDiffControls = () => {
+      const controls = Array.from(document.querySelectorAll('.video-controls[data-diff-scope]'));
+      controls.forEach((control) => {
+        const scopeId = control.getAttribute('data-diff-scope');
+        const scope = scopeId ? document.getElementById(scopeId) : null;
+        if (!scope) return;
+
+        const buttons = Array.from(control.querySelectorAll('.overview-diff-filter[data-diff-mode]'));
+        if (!buttons.length) return;
+
+        const applyMode = (mode) => {
+          const show = mode === 'show';
+          scope.dataset.diffVisible = show ? 'true' : 'false';
+
+          buttons.forEach((button) => {
+            const active = (button.getAttribute('data-diff-mode') || 'hide') === mode;
+            button.classList.toggle('is-active', active);
+            button.setAttribute('aria-pressed', active ? 'true' : 'false');
+          });
+
+          const sampleControls = document.querySelector(`.video-controls[data-scope="${scopeId}"]`);
+          if (!sampleControls) return;
+          const activeSample = sampleControls.querySelector('.video-filter[data-group].is-active')
+            || sampleControls.querySelector('.video-filter[data-group]');
+          if (activeSample) {
+            activeSample.click();
+          }
+        };
+
+        buttons.forEach((button) => {
+          button.addEventListener('click', () => {
+            applyMode(button.getAttribute('data-diff-mode') || 'hide');
+          });
+        });
+
+        const initial = buttons.find((button) => button.classList.contains('is-active')) || buttons[0];
+        applyMode(initial.getAttribute('data-diff-mode') || 'hide');
+      });
+    };
+
+    initOverviewDiffControls();
+
+    const initSsv2Filters = () => {
+      const scopes = Array.from(document.querySelectorAll('[data-ssv2-filterable="true"]'));
+
+      scopes.forEach((scope) => {
+        const scopeId = scope.id;
+        if (!scopeId) return;
+
+        const controlGroups = Array.from(document.querySelectorAll(`.video-controls[data-ssv2-scope="${scopeId}"]`));
+        if (!controlGroups.length) return;
+
+        const scenarioButtons = Array.from(document.querySelectorAll(`.video-controls[data-ssv2-scope="${scopeId}"] .ssv2-scenario-filter[data-ssv2-scenario]`));
+        const sampleButtons = Array.from(document.querySelectorAll(`.video-controls[data-ssv2-scope="${scopeId}"] .ssv2-sample-filter[data-ssv2-sample]`));
+        const dataRows = Array.from(scope.querySelectorAll('tbody tr[data-ssv2-sample]'));
+        const headingRows = Array.from(scope.querySelectorAll('tbody tr[data-ssv2-heading="true"]'));
+        if (!dataRows.length) return;
+
+        const sampleToScenario = new Map();
+        dataRows.forEach((row) => {
+          const sampleName = row.getAttribute('data-ssv2-sample') || '';
+          const sampleScenario = row.getAttribute('data-ssv2-scenario') || '';
+          if (sampleName && sampleScenario) {
+            sampleToScenario.set(sampleName, sampleScenario);
+          }
+        });
+
+        const applyFilter = (scenario, sample) => {
+          const scenarioFilter = scenario || 'all';
+          const sampleFilter = sample || 'all';
+          const allowedSamples = new Set(
+            Array.from(sampleToScenario.entries())
+              .filter(([, sampleScenario]) => scenarioFilter === 'all' || sampleScenario === scenarioFilter)
+              .map(([sampleName]) => sampleName)
+          );
+
+          const effectiveSampleFilter = sampleFilter !== 'all' && !allowedSamples.has(sampleFilter)
+            ? 'all'
+            : sampleFilter;
+
+          dataRows.forEach((row) => {
+            const rowScenario = row.getAttribute('data-ssv2-scenario') || '';
+            const rowSample = row.getAttribute('data-ssv2-sample') || '';
+            const showScenario = scenarioFilter === 'all' || rowScenario === scenarioFilter;
+            const showSample = effectiveSampleFilter === 'all' || rowSample === effectiveSampleFilter;
+            const showRow = showScenario && showSample;
+            row.hidden = !showRow;
+            row.style.display = showRow ? '' : 'none';
+          });
+
+          headingRows.forEach((row) => {
+            const headingScenario = row.getAttribute('data-ssv2-scenario') || '';
+            const hasVisibleScenarioRows = dataRows.some((sampleRow) => {
+              const sameScenario = (sampleRow.getAttribute('data-ssv2-scenario') || '') === headingScenario;
+              return sameScenario && !sampleRow.hidden;
+            });
+            row.hidden = !hasVisibleScenarioRows;
+            row.style.display = hasVisibleScenarioRows ? '' : 'none';
+          });
+
+          scenarioButtons.forEach((button) => {
+            const active = (button.getAttribute('data-ssv2-scenario') || 'all') === scenarioFilter;
+            button.classList.toggle('is-active', active);
+            button.setAttribute('aria-pressed', active ? 'true' : 'false');
+          });
+
+          sampleButtons.forEach((button) => {
+            const sampleName = button.getAttribute('data-ssv2-sample') || 'all';
+            const isSelectable = sampleName === 'all' || scenarioFilter === 'all' || allowedSamples.has(sampleName);
+            button.disabled = !isSelectable;
+            button.setAttribute('aria-disabled', isSelectable ? 'false' : 'true');
+            const active = isSelectable && sampleName === effectiveSampleFilter;
+            button.classList.toggle('is-active', active);
+            button.setAttribute('aria-pressed', active ? 'true' : 'false');
+          });
+
+          scope.dataset.ssv2Scenario = scenarioFilter;
+          scope.dataset.ssv2Sample = effectiveSampleFilter;
+        };
+
+        scenarioButtons.forEach((button) => {
+          button.addEventListener('click', () => {
+            const nextScenario = button.getAttribute('data-ssv2-scenario') || 'all';
+            const currentSample = scope.dataset.ssv2Sample || 'all';
+            applyFilter(nextScenario, currentSample);
+          });
+        });
+
+        sampleButtons.forEach((button) => {
+          button.addEventListener('click', () => {
+            if (button.disabled) return;
+            const nextSample = button.getAttribute('data-ssv2-sample') || 'all';
+            const currentScenario = scope.dataset.ssv2Scenario || 'all';
+            applyFilter(currentScenario, nextSample);
+          });
+        });
+
+        const initialScenarioButton = scenarioButtons.find((button) => button.classList.contains('is-active'));
+        const initialSampleButton = sampleButtons.find((button) => button.classList.contains('is-active'));
+        const initialScenario = initialScenarioButton ? (initialScenarioButton.getAttribute('data-ssv2-scenario') || 'all') : 'all';
+        const initialSample = initialSampleButton ? (initialSampleButton.getAttribute('data-ssv2-sample') || 'all') : 'all';
+        applyFilter(initialScenario, initialSample);
+      });
+    };
+
+    initSsv2Filters();
+
+    const initEchonetFilters = () => {
+      const scopes = Array.from(document.querySelectorAll('[data-echonet-filterable="true"]'));
+
+      scopes.forEach((scope) => {
+        const scopeId = scope.id;
+        if (!scopeId) return;
+
+        const buttons = Array.from(document.querySelectorAll(`.video-controls[data-echonet-scope="${scopeId}"] .echonet-sample-filter[data-echonet-sample]`));
+        const viewButtons = Array.from(document.querySelectorAll(`.video-controls[data-echonet-scope="${scopeId}"] .echonet-view-filter[data-echonet-view]`));
+        const rows = Array.from(scope.querySelectorAll('tbody tr[data-echonet-row]'));
+        const colCells = Array.from(scope.querySelectorAll('[data-echonet-col]'));
+        if (!buttons.length || !rows.length || !colCells.length) return;
+        const figure = document.getElementById('results-echonet-qual-figure');
+        const figureMap = {
+          sample_1: './static/videos/echonet/sample_1/echonet_sample_268.jpg',
+          sample_2: './static/videos/echonet/sample_2/echonet_sample60.jpg',
+          sample_3: './static/videos/echonet/sample_3/echonet_Sample167.jpg'
+        };
+
+        const setActiveRow = (sampleKey) => {
+          rows.forEach((row) => {
+            const rowSample = row.getAttribute('data-echonet-row') || '';
+            const active = rowSample === sampleKey;
+            row.classList.toggle('is-echonet-row-active', active);
+            row.setAttribute('aria-selected', active ? 'true' : 'false');
+          });
+          scope.dataset.echonetActiveRow = sampleKey;
+        };
+
+        const setRowInteractivity = (enabled) => {
+          rows.forEach((row) => {
+            row.classList.toggle('is-echonet-row-pickable', enabled);
+            if (enabled) {
+              const rowSample = row.getAttribute('data-echonet-row') || 'sample';
+              row.setAttribute('tabindex', '0');
+              row.setAttribute('role', 'button');
+              row.setAttribute('aria-label', `Select ${rowSample.replace('_', ' ')} figure`);
+            } else {
+              row.removeAttribute('tabindex');
+              row.removeAttribute('role');
+              row.removeAttribute('aria-label');
+            }
+          });
+        };
+
+        const setFigure = (sampleKey) => {
+          const nextSample = figureMap[sampleKey] ? sampleKey : 'sample_1';
+          if (figure) {
+            figure.setAttribute('src', figureMap[nextSample]);
+            figure.setAttribute('alt', `EchoNet ${nextSample} qualitative figure`);
+          }
+          scope.dataset.echonetLastFigure = nextSample;
+        };
+
+        const setView = (mode) => {
+          scope.classList.remove('is-cf-mode', 'is-mcf-mode', 'is-both-mode');
+          if (mode === 'cf') scope.classList.add('is-cf-mode');
+          if (mode === 'mcf') scope.classList.add('is-mcf-mode');
+          if (mode === 'both') scope.classList.add('is-both-mode');
+
+          colCells.forEach((cell) => {
+            const col = cell.getAttribute('data-echonet-col') || '';
+            const hideForCf = mode === 'cf' && (col === 'mcf' || col === 'mcfdiff');
+            const hideForMcf = mode === 'mcf' && (col === 'cf' || col === 'cfdiff');
+            const showCell = !(hideForCf || hideForMcf);
+            cell.hidden = !showCell;
+            cell.style.display = showCell ? '' : 'none';
+          });
+
+          viewButtons.forEach((button) => {
+            const active = (button.getAttribute('data-echonet-view') || 'both') === mode;
+            button.classList.toggle('is-active', active);
+            button.setAttribute('aria-pressed', active ? 'true' : 'false');
+          });
+
+          scope.dataset.echonetView = mode;
+        };
+
+        const applyFilter = (sample) => {
+          const sampleFilter = sample || 'all';
+          scope.dataset.echonetSample = sampleFilter;
+          scope.classList.toggle('is-all-mode', sampleFilter === 'all');
+
+          rows.forEach((row) => {
+            const rowSample = row.getAttribute('data-echonet-row') || '';
+            const showRow = sampleFilter === 'all' || rowSample === sampleFilter;
+            row.hidden = !showRow;
+            row.style.display = showRow ? '' : 'none';
+          });
+
+          buttons.forEach((button) => {
+            const active = (button.getAttribute('data-echonet-sample') || 'all') === sampleFilter;
+            button.classList.toggle('is-active', active);
+            button.setAttribute('aria-pressed', active ? 'true' : 'false');
+          });
+
+          if (sampleFilter === 'all') {
+            const selectedFigure = scope.dataset.echonetLastFigure || 'sample_1';
+            setFigure(selectedFigure);
+            setActiveRow(selectedFigure);
+            setRowInteractivity(true);
+          } else {
+            setFigure(sampleFilter);
+            setActiveRow('');
+            setRowInteractivity(false);
+          }
+        };
+
+        buttons.forEach((button) => {
+          button.addEventListener('click', () => {
+            applyFilter(button.getAttribute('data-echonet-sample') || 'all');
+          });
+        });
+
+        viewButtons.forEach((button) => {
+          button.addEventListener('click', () => {
+            setView(button.getAttribute('data-echonet-view') || 'both');
+          });
+        });
+
+        rows.forEach((row) => {
+          const selectRowFigure = () => {
+            if ((scope.dataset.echonetSample || 'all') !== 'all') return;
+            const rowSample = row.getAttribute('data-echonet-row') || '';
+            if (!rowSample) return;
+            setFigure(rowSample);
+            setActiveRow(rowSample);
+          };
+
+          row.addEventListener('click', selectRowFigure);
+          row.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              selectRowFigure();
+            }
+          });
+        });
+
+        const initialButton = buttons.find((button) => button.classList.contains('is-active')) || buttons[0];
+        const initialViewButton = viewButtons.find((button) => button.classList.contains('is-active'));
+        applyFilter(initialButton.getAttribute('data-echonet-sample') || 'all');
+        setView(initialViewButton ? (initialViewButton.getAttribute('data-echonet-view') || 'both') : 'both');
+      });
+    };
+
+    initEchonetFilters();
+
+    const initFervAdditionalFilters = () => {
+      const scopes = Array.from(document.querySelectorAll('[data-ferv-add-filterable="true"]'));
+
+      scopes.forEach((scope) => {
+        const scopeId = scope.id;
+        if (!scopeId) return;
+
+        const sampleButtons = Array.from(document.querySelectorAll(`.video-controls[data-ferv-add-scope="${scopeId}"] .ferv-add-sample-filter[data-ferv-add-sample]`));
+        const viewButtons = Array.from(document.querySelectorAll(`.video-controls[data-ferv-add-scope="${scopeId}"] .ferv-add-view-filter[data-ferv-add-view]`));
+        const rows = Array.from(scope.querySelectorAll('tbody tr[data-ferv-add-row]'));
+        const colCells = Array.from(scope.querySelectorAll('[data-ferv-add-col]'));
+        if (!sampleButtons.length || !viewButtons.length || !rows.length || !colCells.length) return;
+
+        const figure = document.getElementById('appendix-ferv-qual-figure');
+        const caption = document.getElementById('appendix-ferv-qual-caption');
+        const figureMap = {
+          sample_4: './static/videos/ferv39k/sample_4/video_12_cmp.jpeg',
+          sample_5: './static/videos/ferv39k/sample_5/video_182_cmp.jpeg',
+          sample_6: './static/videos/ferv39k/sample_6/video_723_cmp.jpeg'
+        };
+        const captionMap = {
+          sample_4: 'Qualitative counterfactual results on the FERV39K dataset. Factual and denoised frames are shown with difference maps (Denoised-Diff. Map) visualizing diffusion-induced changes. Classifier-guided counterfactuals generated by LD-ViCE introduce facial adjustments, such as <strong><em>cheek lifting and softening of the mouth curvature</em></strong> aligned with the <strong><em>Happy</em></strong> emotion, highlighted in the difference maps (Diff. Map). The RA variant suppresses high-frequency artifacts and yields cleaner counterfactuals, with difference maps (RA-Diff. Map) showing only the salient, class-relevant modifications from <strong><em>Neutral</em></strong> to <strong><em>Happy</em></strong>.',
+          sample_5: 'Qualitative counterfactual results on the FERV39K dataset. Factual and denoised frames are shown with difference maps (Denoised-Diff. Map) visualizing diffusion-induced changes. Classifier-guided counterfactuals generated by LD-ViCE introduce facial adjustments, such as <strong><em>reduced brow tension, lowered mouth corners, and tearful eye</em></strong> aligned with the <strong><em>Sad</em></strong> emotion, highlighted in the difference maps (Diff. Map). The RA variant suppresses high-frequency artifacts and yields cleaner counterfactuals, with difference maps (RA-Diff. Map) showing only the salient, class-relevant modifications from <strong><em>Angry</em></strong> to <strong><em>Sad</em></strong>.',
+          sample_6: 'Qualitative counterfactual results on the FERV39K dataset. Factual and denoised frames are shown with difference maps (Denoised-Diff. Map) visualizing diffusion-induced changes. Classifier-guided counterfactuals generated by LD-ViCE introduce facial adjustments, such as <strong><em>widened, more intense eyes, stronger brow contraction, and increased tightening around the mouth</em></strong> aligned with the <strong><em>Angry</em></strong> emotion, highlighted in the difference maps (Diff. Map). The RA variant suppresses high-frequency artifacts and yields cleaner counterfactuals, with difference maps (RA-Diff. Map) showing only the salient, class-relevant modifications from <strong><em>Fear</em></strong> to <strong><em>Angry</em></strong>.'
+        };
+
+        const setFigure = (sampleKey) => {
+          const nextSample = figureMap[sampleKey] ? sampleKey : 'sample_4';
+          if (figure) {
+            figure.setAttribute('src', figureMap[nextSample]);
+            figure.setAttribute('alt', `FERV39k additional ${nextSample} qualitative figure`);
+          }
+          if (caption) {
+            caption.innerHTML = captionMap[nextSample] || captionMap.sample_4;
+          }
+          scope.dataset.fervAddFigure = nextSample;
+        };
+
+        const setActiveRow = (sampleKey) => {
+          rows.forEach((row) => {
+            const rowSample = row.getAttribute('data-ferv-add-row') || '';
+            const active = rowSample === sampleKey;
+            row.classList.toggle('is-echonet-row-active', active);
+            row.setAttribute('aria-selected', active ? 'true' : 'false');
+          });
+          scope.dataset.fervAddActiveRow = sampleKey;
+        };
+
+        const setRowInteractivity = (enabled) => {
+          rows.forEach((row) => {
+            row.classList.toggle('is-echonet-row-pickable', enabled);
+            if (enabled) {
+              const rowSample = row.getAttribute('data-ferv-add-row') || 'sample';
+              row.setAttribute('tabindex', '0');
+              row.setAttribute('role', 'button');
+              row.setAttribute('aria-label', `Select ${rowSample.replace('_', ' ')} figure`);
+            } else {
+              row.removeAttribute('tabindex');
+              row.removeAttribute('role');
+              row.removeAttribute('aria-label');
+            }
+          });
+        };
+
+        const setView = (mode) => {
+          const viewMode = mode || 'all';
+          scope.classList.toggle('is-all-mode', (scope.dataset.fervAddSample || 'all') === 'all');
+          scope.classList.remove('is-cf-mode', 'is-mcf-mode', 'is-both-mode');
+          if (viewMode === 'cf') scope.classList.add('is-cf-mode');
+          if (viewMode === 'mcf') scope.classList.add('is-mcf-mode');
+          if (viewMode === 'all') scope.classList.add('is-both-mode');
+
+          colCells.forEach((cell) => {
+            const col = cell.getAttribute('data-ferv-add-col') || '';
+            const keepInCf = new Set(['original', 'dn', 'dndiff', 'cf', 'cfdiff']);
+            const keepInMcf = new Set(['original', 'dn', 'dndiff', 'mcf', 'mcfdiff']);
+
+            let showCell = true;
+            if (viewMode === 'cf') showCell = keepInCf.has(col);
+            if (viewMode === 'mcf') showCell = keepInMcf.has(col);
+            if (viewMode === 'all') showCell = true;
+
+            cell.hidden = !showCell;
+            cell.style.display = showCell ? '' : 'none';
+          });
+
+          viewButtons.forEach((button) => {
+            const active = (button.getAttribute('data-ferv-add-view') || 'all') === viewMode;
+            button.classList.toggle('is-active', active);
+            button.setAttribute('aria-pressed', active ? 'true' : 'false');
+          });
+
+          scope.dataset.fervAddView = viewMode;
+        };
+
+        const applySampleFilter = (sample) => {
+          const sampleFilter = sample || 'all';
+          scope.dataset.fervAddSample = sampleFilter;
+          scope.classList.toggle('is-all-mode', sampleFilter === 'all');
+
+          rows.forEach((row) => {
+            const rowSample = row.getAttribute('data-ferv-add-row') || '';
+            const showRow = sampleFilter === 'all' || rowSample === sampleFilter;
+            row.hidden = !showRow;
+            row.style.display = showRow ? '' : 'none';
+          });
+
+          sampleButtons.forEach((button) => {
+            const active = (button.getAttribute('data-ferv-add-sample') || 'all') === sampleFilter;
+            button.classList.toggle('is-active', active);
+            button.setAttribute('aria-pressed', active ? 'true' : 'false');
+          });
+
+          if (sampleFilter === 'all') {
+            const selectedFigure = scope.dataset.fervAddFigure || 'sample_4';
+            setFigure(selectedFigure);
+            setActiveRow(selectedFigure);
+            setRowInteractivity(true);
+          } else {
+            setFigure(sampleFilter);
+            setActiveRow('');
+            setRowInteractivity(false);
+          }
+        };
+
+        sampleButtons.forEach((button) => {
+          button.addEventListener('click', () => {
+            applySampleFilter(button.getAttribute('data-ferv-add-sample') || 'all');
+          });
+        });
+
+        viewButtons.forEach((button) => {
+          button.addEventListener('click', () => {
+            setView(button.getAttribute('data-ferv-add-view') || 'all');
+          });
+        });
+
+        rows.forEach((row) => {
+          const selectRowFigure = () => {
+            if ((scope.dataset.fervAddSample || 'all') !== 'all') return;
+            const rowSample = row.getAttribute('data-ferv-add-row') || '';
+            if (!rowSample) return;
+            setFigure(rowSample);
+            setActiveRow(rowSample);
+          };
+
+          row.addEventListener('click', selectRowFigure);
+          row.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              selectRowFigure();
+            }
+          });
+        });
+
+        const initialSampleButton = sampleButtons.find((button) => button.classList.contains('is-active')) || sampleButtons[0];
+        const initialViewButton = viewButtons.find((button) => button.classList.contains('is-active')) || viewButtons[0];
+        applySampleFilter(initialSampleButton.getAttribute('data-ferv-add-sample') || 'all');
+        setView(initialViewButton.getAttribute('data-ferv-add-view') || 'all');
+      });
+    };
+
+    initFervAdditionalFilters();
+
+    const initEchonetAdditionalFilters = () => {
+      const scopes = Array.from(document.querySelectorAll('[data-echonet-add-filterable="true"]'));
+
+      scopes.forEach((scope) => {
+        const scopeId = scope.id;
+        if (!scopeId) return;
+
+        const sampleButtons = Array.from(document.querySelectorAll(`.video-controls[data-echonet-add-scope="${scopeId}"] .echonet-add-sample-filter[data-echonet-add-sample]`));
+        const viewButtons = Array.from(document.querySelectorAll(`.video-controls[data-echonet-add-scope="${scopeId}"] .echonet-add-view-filter[data-echonet-add-view]`));
+        const rows = Array.from(scope.querySelectorAll('tbody tr[data-echonet-add-row]'));
+        const colCells = Array.from(scope.querySelectorAll('[data-echonet-add-col]'));
+        if (!sampleButtons.length || !viewButtons.length || !rows.length || !colCells.length) return;
+        const figure = document.getElementById('appendix-echonet-qual-figure');
+        const figureMap = {
+          sample_4: './static/videos/echonet/sample_4/echo_video_0_cmp.jpeg',
+          sample_5: './static/videos/echonet/sample_5/echo_video_2_cmp.jpeg'
+        };
+
+        const setFigure = (sampleKey) => {
+          const nextSample = figureMap[sampleKey] ? sampleKey : 'sample_4';
+          if (figure) {
+            figure.setAttribute('src', figureMap[nextSample]);
+            figure.setAttribute('alt', `EchoNet additional ${nextSample} qualitative figure`);
+          }
+          scope.dataset.echonetAddFigure = nextSample;
+        };
+
+        const setActiveRow = (sampleKey) => {
+          rows.forEach((row) => {
+            const rowSample = row.getAttribute('data-echonet-add-row') || '';
+            const active = rowSample === sampleKey;
+            row.classList.toggle('is-echonet-row-active', active);
+            row.setAttribute('aria-selected', active ? 'true' : 'false');
+          });
+          scope.dataset.echonetAddActiveRow = sampleKey;
+        };
+
+        const setRowInteractivity = (enabled) => {
+          rows.forEach((row) => {
+            row.classList.toggle('is-echonet-row-pickable', enabled);
+            if (enabled) {
+              const rowSample = row.getAttribute('data-echonet-add-row') || 'sample';
+              row.setAttribute('tabindex', '0');
+              row.setAttribute('role', 'button');
+              row.setAttribute('aria-label', `Select ${rowSample.replace('_', ' ')} figure`);
+            } else {
+              row.removeAttribute('tabindex');
+              row.removeAttribute('role');
+              row.removeAttribute('aria-label');
+            }
+          });
+        };
+
+        const setView = (mode) => {
+          const viewMode = mode || 'all';
+          scope.classList.toggle('is-all-mode', (scope.dataset.echonetAddSample || 'all') === 'all');
+          scope.classList.remove('is-cf-mode', 'is-mcf-mode', 'is-both-mode');
+          if (viewMode === 'cf') scope.classList.add('is-cf-mode');
+          if (viewMode === 'mcf') scope.classList.add('is-mcf-mode');
+          if (viewMode === 'all') scope.classList.add('is-both-mode');
+
+          colCells.forEach((cell) => {
+            const col = cell.getAttribute('data-echonet-add-col') || '';
+            const keepInCf = new Set(['original', 'dn', 'dndiff', 'cf', 'cfdiff']);
+            const keepInMcf = new Set(['original', 'dn', 'dndiff', 'mcf', 'mcfdiff']);
+
+            let showCell = true;
+            if (viewMode === 'cf') showCell = keepInCf.has(col);
+            if (viewMode === 'mcf') showCell = keepInMcf.has(col);
+            if (viewMode === 'all') showCell = true;
+
+            cell.hidden = !showCell;
+            cell.style.display = showCell ? '' : 'none';
+          });
+
+          viewButtons.forEach((button) => {
+            const active = (button.getAttribute('data-echonet-add-view') || 'all') === viewMode;
+            button.classList.toggle('is-active', active);
+            button.setAttribute('aria-pressed', active ? 'true' : 'false');
+          });
+
+          scope.dataset.echonetAddView = viewMode;
+        };
+
+        const applySampleFilter = (sample) => {
+          const sampleFilter = sample || 'all';
+          scope.dataset.echonetAddSample = sampleFilter;
+          scope.classList.toggle('is-all-mode', sampleFilter === 'all');
+
+          rows.forEach((row) => {
+            const rowSample = row.getAttribute('data-echonet-add-row') || '';
+            const showRow = sampleFilter === 'all' || rowSample === sampleFilter;
+            row.hidden = !showRow;
+            row.style.display = showRow ? '' : 'none';
+          });
+
+          sampleButtons.forEach((button) => {
+            const active = (button.getAttribute('data-echonet-add-sample') || 'all') === sampleFilter;
+            button.classList.toggle('is-active', active);
+            button.setAttribute('aria-pressed', active ? 'true' : 'false');
+          });
+
+          if (sampleFilter === 'all') {
+            const selectedFigure = scope.dataset.echonetAddFigure || 'sample_4';
+            setFigure(selectedFigure);
+            setActiveRow(selectedFigure);
+            setRowInteractivity(true);
+          } else {
+            setFigure(sampleFilter);
+            setActiveRow('');
+            setRowInteractivity(false);
+          }
+        };
+
+        sampleButtons.forEach((button) => {
+          button.addEventListener('click', () => {
+            applySampleFilter(button.getAttribute('data-echonet-add-sample') || 'all');
+          });
+        });
+
+        viewButtons.forEach((button) => {
+          button.addEventListener('click', () => {
+            setView(button.getAttribute('data-echonet-add-view') || 'all');
+          });
+        });
+
+        rows.forEach((row) => {
+          const selectRowFigure = () => {
+            if ((scope.dataset.echonetAddSample || 'all') !== 'all') return;
+            const rowSample = row.getAttribute('data-echonet-add-row') || '';
+            if (!rowSample) return;
+            setFigure(rowSample);
+            setActiveRow(rowSample);
+          };
+
+          row.addEventListener('click', selectRowFigure);
+          row.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              selectRowFigure();
+            }
+          });
+        });
+
+        const initialSampleButton = sampleButtons.find((button) => button.classList.contains('is-active')) || sampleButtons[0];
+        const initialViewButton = viewButtons.find((button) => button.classList.contains('is-active')) || viewButtons[0];
+        applySampleFilter(initialSampleButton.getAttribute('data-echonet-add-sample') || 'all');
+        setView(initialViewButton.getAttribute('data-echonet-add-view') || 'all');
+      });
+    };
+
+    initEchonetAdditionalFilters();
+
+    const initSsv2AdditionalFilters = () => {
+      const scopes = Array.from(document.querySelectorAll('[data-ssv2-add-filterable="true"]'));
+
+      scopes.forEach((scope) => {
+        const scopeId = scope.id;
+        if (!scopeId) return;
+
+        const scenarioButtons = Array.from(document.querySelectorAll(`.video-controls[data-ssv2-add-scope="${scopeId}"] .ssv2-add-scenario-filter[data-ssv2-add-scenario]`));
+        const sampleButtons = Array.from(document.querySelectorAll(`.video-controls[data-ssv2-add-scope="${scopeId}"] .ssv2-add-sample-filter[data-ssv2-add-sample]`));
+        const viewButtons = Array.from(document.querySelectorAll(`.video-controls[data-ssv2-add-scope="${scopeId}"] .ssv2-add-view-filter[data-ssv2-add-view]`));
+        const rows = Array.from(scope.querySelectorAll('tbody tr[data-ssv2-add-row]'));
+        const colCells = Array.from(scope.querySelectorAll('[data-ssv2-add-col]'));
+        if (!scenarioButtons.length || !sampleButtons.length || !viewButtons.length || !rows.length || !colCells.length) return;
+
+        const figure = document.getElementById('appendix-ssv2-qual-figure');
+        const caption = document.getElementById('appendix-ssv2-qual-caption');
+        const figureMap = {
+          sample_1: './static/videos/ssv2/sample_1/ssv2_video_730_cmp_u.jpg',
+          sample_2: './static/videos/ssv2/sample_2/ssv2_video_2942_cmp_u.jpg',
+          sample_3: './static/videos/ssv2/sample_3/ssv2_video_7_cmp.jpeg',
+          sample_4: './static/videos/ssv2/sample_4/ssv2_video_75_cmp.jpeg'
+        };
+        const captionMap = {
+          bending: 'Qualitative counterfactual results for transforming the predicted action from <strong><em>Bending something so that it deforms</em></strong> to <strong><em>Bending something until it breaks</em></strong> on the SSv2 dataset using LD-ViCE. Factual frames and denoised reconstructions (guidance-free) are shown alongside their denoised difference maps (Denoised-Diff. Map). LD-ViCE counterfactuals introduce classifier-driven changes in the interaction region, while the RA variant suppresses high-frequency diffusion artifacts. Changes are primarily applied to the expected interaction region, and in the final frames, localized brightening and deformation in the folding area represent a potential break in the object (highlighted in the red circle).',
+          pouring: 'Qualitative counterfactual results for transforming the predicted action from <strong><em>Pouring something into something</em></strong> to <strong><em>Pouring something into something until it overflows</em></strong> on the SSv2 dataset, using LD-ViCE. Factual frames and denoised reconstructions (guidance-free) are shown alongside their denoised difference maps (Denoised-Diff. Map). LD-ViCE counterfactuals introduce classifier-driven changes in the interaction region, while the RA variant suppresses high-frequency diffusion artifacts. Modifications occur near the pouring region, creating the effect of a filled container without clear visual evidence of overflowing liquid.'
+        };
+        const sampleScenarioMap = {
+          sample_1: 'bending',
+          sample_2: 'bending',
+          sample_3: 'pouring',
+          sample_4: 'pouring'
+        };
+
+        const setFigure = (sampleKey) => {
+          const nextSample = figureMap[sampleKey] ? sampleKey : 'sample_1';
+          if (figure) {
+            figure.setAttribute('src', figureMap[nextSample]);
+            figure.setAttribute('alt', `SSV2 additional ${nextSample} qualitative figure`);
+          }
+          if (caption) {
+            const scenario = sampleScenarioMap[nextSample] || 'bending';
+            caption.innerHTML = captionMap[scenario] || captionMap.bending;
+          }
+          scope.dataset.ssv2AddFigure = nextSample;
+        };
+
+        const setActiveRow = (sampleKey) => {
+          rows.forEach((row) => {
+            const rowSample = row.getAttribute('data-ssv2-add-row') || '';
+            const active = rowSample === sampleKey;
+            row.classList.toggle('is-echonet-row-active', active);
+            row.setAttribute('aria-selected', active ? 'true' : 'false');
+          });
+          scope.dataset.ssv2AddActiveRow = sampleKey;
+        };
+
+        const setRowInteractivity = (enabled) => {
+          rows.forEach((row) => {
+            row.classList.toggle('is-echonet-row-pickable', enabled);
+            if (enabled) {
+              const rowSample = row.getAttribute('data-ssv2-add-row') || 'sample';
+              row.setAttribute('tabindex', '0');
+              row.setAttribute('role', 'button');
+              row.setAttribute('aria-label', `Select ${rowSample.replace('_', ' ')} figure`);
+            } else {
+              row.removeAttribute('tabindex');
+              row.removeAttribute('role');
+              row.removeAttribute('aria-label');
+            }
+          });
+        };
+
+        const sampleToScenario = new Map();
+        rows.forEach((row) => {
+          const sampleName = row.getAttribute('data-ssv2-add-row') || '';
+          const sampleScenario = row.getAttribute('data-ssv2-add-scenario') || '';
+          if (sampleName && sampleScenario) {
+            sampleToScenario.set(sampleName, sampleScenario);
+          }
+        });
+        const firstSampleByScenario = {
+          bending: 'sample_1',
+          pouring: 'sample_3',
+          all: 'sample_1'
+        };
+
+        const getAllowedSamples = (scenarioFilter) => new Set(
+          Array.from(sampleToScenario.entries())
+            .filter(([, sampleScenario]) => scenarioFilter === 'all' || sampleScenario === scenarioFilter)
+            .map(([sampleName]) => sampleName)
+        );
+
+        const setView = (mode) => {
+          const viewMode = mode || 'all';
+          scope.classList.toggle('is-all-mode', (scope.dataset.ssv2AddSample || 'all') === 'all');
+          scope.classList.remove('is-cf-mode', 'is-mcf-mode', 'is-both-mode');
+          if (viewMode === 'cf') scope.classList.add('is-cf-mode');
+          if (viewMode === 'mcf') scope.classList.add('is-mcf-mode');
+          if (viewMode === 'all') scope.classList.add('is-both-mode');
+
+          colCells.forEach((cell) => {
+            const col = cell.getAttribute('data-ssv2-add-col') || '';
+            const keepInCf = new Set(['original', 'dn', 'dndiff', 'cf', 'cfdiff']);
+            const keepInMcf = new Set(['original', 'dn', 'dndiff', 'mcf', 'mcfdiff']);
+
+            let showCell = true;
+            if (viewMode === 'cf') showCell = keepInCf.has(col);
+            if (viewMode === 'mcf') showCell = keepInMcf.has(col);
+            if (viewMode === 'all') showCell = true;
+
+            cell.hidden = !showCell;
+            cell.style.display = showCell ? '' : 'none';
+          });
+
+          viewButtons.forEach((button) => {
+            const active = (button.getAttribute('data-ssv2-add-view') || 'all') === viewMode;
+            button.classList.toggle('is-active', active);
+            button.setAttribute('aria-pressed', active ? 'true' : 'false');
+          });
+
+          scope.dataset.ssv2AddView = viewMode;
+        };
+
+        const applyFilter = (scenario, sample, preferDefaultFigure = false) => {
+          const scenarioFilter = scenario || 'all';
+          const sampleFilter = sample || 'all';
+          const allowedSamples = getAllowedSamples(scenarioFilter);
+          const effectiveSampleFilter = sampleFilter !== 'all' && !allowedSamples.has(sampleFilter)
+            ? 'all'
+            : sampleFilter;
+
+          rows.forEach((row) => {
+            const rowSample = row.getAttribute('data-ssv2-add-row') || '';
+            const rowScenario = row.getAttribute('data-ssv2-add-scenario') || '';
+            const showScenario = scenarioFilter === 'all' || rowScenario === scenarioFilter;
+            const showSample = effectiveSampleFilter === 'all' || rowSample === effectiveSampleFilter;
+            const showRow = showScenario && showSample;
+            row.hidden = !showRow;
+            row.style.display = showRow ? '' : 'none';
+          });
+
+          scenarioButtons.forEach((button) => {
+            const active = (button.getAttribute('data-ssv2-add-scenario') || 'all') === scenarioFilter;
+            button.classList.toggle('is-active', active);
+            button.setAttribute('aria-pressed', active ? 'true' : 'false');
+          });
+
+          sampleButtons.forEach((button) => {
+            const sampleName = button.getAttribute('data-ssv2-add-sample') || 'all';
+            const isSelectable = sampleName === 'all' || scenarioFilter === 'all' || allowedSamples.has(sampleName);
+            button.disabled = !isSelectable;
+            button.setAttribute('aria-disabled', isSelectable ? 'false' : 'true');
+            const active = isSelectable && sampleName === effectiveSampleFilter;
+            button.classList.toggle('is-active', active);
+            button.setAttribute('aria-pressed', active ? 'true' : 'false');
+          });
+
+          if (effectiveSampleFilter === 'all') {
+            const defaultSample = firstSampleByScenario[scenarioFilter] || allowedSamples.values().next().value || 'sample_1';
+            const selectedFigure = preferDefaultFigure
+              ? (allowedSamples.has(defaultSample) ? defaultSample : allowedSamples.values().next().value || 'sample_1')
+              : (allowedSamples.has(scope.dataset.ssv2AddFigure || '')
+                ? scope.dataset.ssv2AddFigure
+                : (allowedSamples.has(defaultSample) ? defaultSample : allowedSamples.values().next().value || 'sample_1'));
+            setFigure(selectedFigure);
+            setActiveRow(selectedFigure);
+            setRowInteractivity(true);
+          } else {
+            setFigure(effectiveSampleFilter);
+            setActiveRow('');
+            setRowInteractivity(false);
+          }
+
+          scope.dataset.ssv2AddScenario = scenarioFilter;
+          scope.dataset.ssv2AddSample = effectiveSampleFilter;
+        };
+
+        scenarioButtons.forEach((button) => {
+          button.addEventListener('click', () => {
+            const nextScenario = button.getAttribute('data-ssv2-add-scenario') || 'all';
+            applyFilter(nextScenario, 'all', true);
+          });
+        });
+
+        sampleButtons.forEach((button) => {
+          button.addEventListener('click', () => {
+            if (button.disabled) return;
+            const nextSample = button.getAttribute('data-ssv2-add-sample') || 'all';
+            const currentScenario = scope.dataset.ssv2AddScenario || 'all';
+            applyFilter(currentScenario, nextSample);
+          });
+        });
+
+        viewButtons.forEach((button) => {
+          button.addEventListener('click', () => {
+            setView(button.getAttribute('data-ssv2-add-view') || 'all');
+          });
+        });
+
+        rows.forEach((row) => {
+          const selectRowFigure = () => {
+            if ((scope.dataset.ssv2AddSample || 'all') !== 'all') return;
+            const rowSample = row.getAttribute('data-ssv2-add-row') || '';
+            if (!rowSample) return;
+            setFigure(rowSample);
+            setActiveRow(rowSample);
+          };
+
+          row.addEventListener('click', selectRowFigure);
+          row.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              selectRowFigure();
+            }
+          });
+        });
+
+        const initialScenarioButton = scenarioButtons.find((button) => button.classList.contains('is-active')) || scenarioButtons[0];
+        const initialSampleButton = sampleButtons.find((button) => button.classList.contains('is-active')) || sampleButtons[0];
+        const initialViewButton = viewButtons.find((button) => button.classList.contains('is-active')) || viewButtons[0];
+        applyFilter(
+          initialScenarioButton.getAttribute('data-ssv2-add-scenario') || 'all',
+          initialSampleButton.getAttribute('data-ssv2-add-sample') || 'all',
+          true
+        );
+        setView(initialViewButton.getAttribute('data-ssv2-add-view') || 'all');
+      });
+    };
+
+    initSsv2AdditionalFilters();
+
+    const initClassFilters = () => {
+      const classControlGroups = Array.from(document.querySelectorAll('.video-class-controls[data-class-scope]'));
+
+      classControlGroups.forEach((controls) => {
+        const scopeId = controls.getAttribute('data-class-scope');
+        const scope = scopeId ? document.getElementById(scopeId) : null;
+        if (!scope) return;
+
+        const buttons = Array.from(controls.querySelectorAll('.video-class-filter[data-class]'));
+        const allButton = buttons.find((button) => button.getAttribute('data-class') === 'all');
+        const classButtons = buttons.filter((button) => button.getAttribute('data-class') !== 'all');
+        if (!buttons.length) return;
+
+        const getSelected = () => {
+          const selected = classButtons
+            .filter((button) => button.classList.contains('is-active'))
+            .map((button) => button.getAttribute('data-class') || '')
+            .filter(Boolean);
+          return new Set(selected);
+        };
+
+        const applyClassSelection = (selectedSet, useAll) => {
+          const selectedList = useAll ? ['all'] : Array.from(selectedSet);
+          scope.dataset.classFilter = useAll ? 'all' : selectedList.join(',');
+          applyClassFilter(scope, selectedList);
+
+          classButtons.forEach((button) => {
+            const className = button.getAttribute('data-class') || '';
+            const active = !useAll && selectedSet.has(className);
+            button.classList.toggle('is-active', active);
+            button.setAttribute('aria-pressed', active ? 'true' : 'false');
+          });
+
+          if (allButton) {
+            allButton.classList.toggle('is-active', useAll);
+            allButton.setAttribute('aria-pressed', useAll ? 'true' : 'false');
+          }
+        };
+
+        if (allButton) {
+          allButton.addEventListener('click', () => {
+            applyClassSelection(new Set(), true);
+          });
+        }
+
+        classButtons.forEach((button) => {
+          button.addEventListener('click', () => {
+            const className = button.getAttribute('data-class') || '';
+            const selectedSet = getSelected();
+            const currentlyActive = button.classList.contains('is-active');
+
+            if (currentlyActive) {
+              selectedSet.delete(className);
+            } else {
+              selectedSet.add(className);
+            }
+
+            if (selectedSet.size === 0 && allButton) {
+              applyClassSelection(new Set(), true);
+            } else {
+              if (selectedSet.size === 0 && !allButton) {
+                selectedSet.add(className);
+              }
+              applyClassSelection(selectedSet, false);
+            }
+          });
+        });
+
+        const initialActiveClasses = new Set(
+          classButtons
+            .filter((button) => button.classList.contains('is-active'))
+            .map((button) => button.getAttribute('data-class') || '')
+            .filter(Boolean)
+        );
+        const initialUseAll = Boolean(allButton) && initialActiveClasses.size === 0;
+        applyClassSelection(initialActiveClasses, initialUseAll);
+      });
+    };
+
+    initClassFilters();
+
+    const initPlaybackSpeedControls = () => {
+      const speedOptions = [0, 0.3, 0.5, 0.7, 1.0];
+      const scopeControllers = new Map();
+      const snapSpeed = (rawSpeed) => {
+        return speedOptions.reduce((closest, candidate) => {
+          return Math.abs(candidate - rawSpeed) < Math.abs(closest - rawSpeed) ? candidate : closest;
+        }, speedOptions[0]);
+      };
+      const formatSpeed = (speed) => `${speed.toFixed(1)}x`;
+
+      const clearController = (scopeId) => {
+        const state = scopeControllers.get(scopeId);
+        if (!state) return;
+        if (state.intervalId) window.clearInterval(state.intervalId);
+        if (state.pauseTimeoutId) window.clearTimeout(state.pauseTimeoutId);
+        scopeControllers.delete(scopeId);
+      };
+
+      const applySpeed = (scope, speed) => {
+        const scopeId = scope.id;
+        if (!scopeId) return;
+        clearController(scopeId);
+        scope.dataset.motionSpeed = String(speed);
+
+        if (speed <= 0) {
+          setScopeMotion(scope, true);
+          return;
+        }
+
+        if (speed >= 1) {
+          setScopeMotion(scope, false);
+          return;
+        }
+
+        const cycleMs = 1200;
+        const playMs = Math.max(120, Math.round(cycleMs * speed));
+
+        const state = { intervalId: null, pauseTimeoutId: null };
+        scopeControllers.set(scopeId, state);
+
+        const runCycle = () => {
+          setScopeMotion(scope, false);
+          const pauseTimeoutId = window.setTimeout(() => {
+            setScopeMotion(scope, true);
+          }, playMs);
+          state.pauseTimeoutId = pauseTimeoutId;
+        };
+
+        state.intervalId = window.setInterval(runCycle, cycleMs);
+        runCycle();
+      };
+
+      const rows = Array.from(document.querySelectorAll('.video-motion-row'));
+      rows.forEach((row) => {
+        const tip = row.querySelector('.video-controls-help-inline');
+        const scopeId = row.getAttribute('data-motion-scope');
+        const scope = scopeId ? document.getElementById(scopeId) : null;
+        if (!scope) return;
+
+        const label = document.createElement('span');
+        label.className = 'video-controls-label';
+        label.textContent = 'Playback Speed:';
+        row.appendChild(label);
+
+        const speedControl = document.createElement('div');
+        speedControl.className = 'video-speed-control';
+
+        const slider = document.createElement('input');
+        slider.type = 'range';
+        slider.className = 'video-speed-slider';
+        slider.min = '0';
+        slider.max = '1';
+        slider.step = '0.01';
+        slider.value = '1';
+        slider.setAttribute('aria-label', 'GIF speed control');
+        speedControl.appendChild(slider);
+
+        const ticks = document.createElement('div');
+        ticks.className = 'video-speed-ticks';
+        const tickNodes = speedOptions.map((speed) => {
+          const tick = document.createElement('span');
+          tick.className = 'video-speed-tick';
+          tick.dataset.speed = String(speed);
+          tick.textContent = formatSpeed(speed);
+          ticks.appendChild(tick);
+          return tick;
+        });
+        speedControl.appendChild(ticks);
+        row.appendChild(speedControl);
+
+        const updateActiveTick = (speed) => {
+          tickNodes.forEach((tick) => {
+            const tickSpeed = parseFloat(tick.dataset.speed || '');
+            const isActive = !Number.isNaN(tickSpeed) && Math.abs(tickSpeed - speed) < 1e-9;
+            tick.classList.toggle('is-active', isActive);
+          });
+        };
+
+        const onSliderChange = () => {
+          const raw = parseFloat(slider.value);
+          const snapped = snapSpeed(Number.isNaN(raw) ? 1.0 : raw);
+          slider.value = String(snapped);
+          updateActiveTick(snapped);
+          applySpeed(scope, snapped);
+        };
+
+        slider.addEventListener('input', onSliderChange);
+        slider.addEventListener('change', onSliderChange);
+
+        updateActiveTick(1.0);
+        applySpeed(scope, 1.0);
+
+        if (tip) {
+          row.appendChild(tip);
+        }
+      });
+    };
+
+    initPlaybackSpeedControls();
+
+    const initPerGifMotionToggles = () => {
+      const clickableGifs = Array.from(document.querySelectorAll(
+        '.overview-video-row img, .echonet-table img, .ssv2-table img'
+      ));
+
+      clickableGifs.forEach((img) => {
+        img.classList.add('gif-motion-toggle');
+        img.setAttribute('title', 'Click to pause/play');
+        if (!img.hasAttribute('tabindex')) {
+          img.setAttribute('tabindex', '0');
+        }
+        img.setAttribute('role', 'button');
+        img.setAttribute('aria-label', 'Toggle GIF motion');
+
+        const toggle = () => {
+          const paused = img.dataset.motionPaused === 'true';
+          setImageMotion(img, !paused);
+        };
+
+        img.addEventListener('click', toggle);
+        img.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            toggle();
+          }
+        });
+      });
+    };
+
+    initPerGifMotionToggles();
+
+    const initDatasetCardSelection = () => {
+      const sectionIds = ['results', 'appendix'];
+
+      sectionIds.forEach((sectionId) => {
+        const section = document.getElementById(sectionId);
+        if (!section) return;
+
+        const links = Array.from(section.querySelectorAll('.dataset-mini-link[href^="#"]'));
+        const closeLinks = Array.from(section.querySelectorAll('.dataset-close'));
+        if (!links.length) return;
+
+        const clearSelection = () => {
+          links.forEach((link) => link.classList.remove('is-selected'));
+        };
+
+        links.forEach((link) => {
+          link.addEventListener('click', () => {
+            clearSelection();
+            link.classList.add('is-selected');
+          });
+        });
+
+        closeLinks.forEach((closeLink) => {
+          closeLink.addEventListener('click', () => {
+            clearSelection();
+          });
+        });
+      });
+    };
+
+    initDatasetCardSelection();
+
     const navLinks = Array.from(document.querySelectorAll('.section-nav a[href^="#"]'));
     const sectionIds = navLinks.map(link => link.getAttribute('href'));
     const sections = sectionIds
